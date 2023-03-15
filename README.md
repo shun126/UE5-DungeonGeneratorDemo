@@ -8,10 +8,12 @@ Also, [UnrealEngine marketplace](https://www.unrealengine.com/marketplace/slug/3
 
 [![license](https://img.shields.io/github/license/shun126/DungeonGeneratorDemo)](https://github.com/shun126/DungeonGeneratorDemo/blob/main/LICENSE)
 [![release](https://img.shields.io/github/v/release/shun126/DungeonGeneratorDemo)](https://github.com/shun126/DungeonGeneratorDemo/releases)
-[![downloads](https://img.shields.io/github/downloads/shun126/DungeonGeneratorDemo/total)](https://github.com/shun126/DungeonGeneratorDemo/releases)
 [![stars](https://img.shields.io/github/stars/shun126/DungeonGeneratorDemo?style=social)](https://github.com/shun126/DungeonGeneratorDemo/stargazers)
+[![youtube](https://img.shields.io/youtube/views/HIW4mRt2_AA?style=social)](https://youtu.be/HIW4mRt2_AA)
 
 ![Screenshot](Document/Screenshot.gif)
+
+Trailer: [YouTube](https://youtu.be/HIW4mRt2_AA)
 
 # 🚩 Table of Contents
 - [Why Dungeon Generator?](#-why-dungeon-generator)
