@@ -2,11 +2,9 @@
 
 > Easy generation of levels, mini-maps and missions.
 
-This is a demo project for [Dungeon generator plugin for Unreal Engine](https://github.com/shun126/DungeonGenerator).
+This is a demo project for [Dungeon generator plugin for Unreal Engine](https://www.unrealengine.com/marketplace/slug/36a8b87d859f44439cfe1515975d7197).
 
 Revolutionize your dungeon creation process with our new Unreal Engine plugin! Enjoy freedom and customize your own rulesets to offer players unique and engaging dungeon exploration experiences. Say goodbye to the hassle of manual dungeon building and welcome the new age of dungeon exploration!
-
-Also, [UnrealEngine marketplace](https://www.unrealengine.com/marketplace/slug/36a8b87d859f44439cfe1515975d7197) is releasing it under Epic license. If you need a license other than the GPL, please consider it. Proceeds will be used to fund the development of our game.
 
 [![license](https://img.shields.io/github/license/shun126/DungeonGeneratorDemo)](https://github.com/shun126/DungeonGeneratorDemo/blob/main/LICENSE)
 [![release](https://img.shields.io/github/v/release/shun126/DungeonGeneratorDemo)](https://github.com/shun126/DungeonGeneratorDemo/releases)
