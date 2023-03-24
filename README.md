@@ -7,7 +7,7 @@ This is a demo project for [Dungeon generator plugin for Unreal Engine](https://
 Revolutionize your dungeon creation process with our new Unreal Engine plugin! Enjoy freedom and customize your own rulesets to offer players unique and engaging dungeon exploration experiences. Say goodbye to the hassle of manual dungeon building and welcome the new age of dungeon exploration!
 
 [![license](https://img.shields.io/github/license/shun126/DungeonGeneratorDemo)](https://github.com/shun126/DungeonGeneratorDemo/blob/main/LICENSE)
-[![release](https://img.shields.io/github/v/release/shun126/DungeonGeneratorDemo)](https://github.com/shun126/DungeonGeneratorDemo/releases)
+[![downloads](https://img.shields.io/github/downloads/shun126/DungeonGeneratorDemo/total)](https://github.com/shun126/DungeonGeneratorDemo/releases)
 [![stars](https://img.shields.io/github/stars/shun126/DungeonGeneratorDemo?style=social)](https://github.com/shun126/DungeonGeneratorDemo/stargazers)
 [![youtube](https://img.shields.io/youtube/views/HIW4mRt2_AA?style=social)](https://youtu.be/HIW4mRt2_AA)
 
