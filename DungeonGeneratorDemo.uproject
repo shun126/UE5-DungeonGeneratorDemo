@@ -1,8 +1,18 @@
 {
 	"FileVersion": 3,
 	"EngineAssociation": "5.1",
-	"Category": "",
-	"Description": "",
+	"Category": "Other",
+	"Description": "three-dimensional dungeon generation demo.",
+	"Modules": [
+		{
+			"Name": "DungeonGeneratorDemo",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
+		}
+	],
 	"Plugins": [
 		{
 			"Name": "ModelingToolsEditorMode",
