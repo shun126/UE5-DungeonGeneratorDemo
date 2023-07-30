@@ -36,16 +36,17 @@ The dungeon generator was based on Vazgriz's algorithm. You can read more about 
 * Users can easily generate dungeons by preparing meshes for floors, walls, ceilings, and stairs.
 * A mini-map of the dungeon can be generated. [beta version]
 * Generates actors for doors and keys by MissionGraph. [beta version]
+* Generates interior decoration by InteriorDecorator. [beta version]
 * Supported Development Platforms: Windows (should be possible to build on all platforms)
 * Supported Target Build Platforms: Windows (should be possible to target all platforms)
 
 # 🔧 Requirements
-* [Unreal Engine 5.2](https://www.unrealengine.com/unreal-engine-5)
+* [Unreal Engine 5.0 - 5.2.1](https://www.unrealengine.com/unreal-engine-5)
 * [Visual Studio 2022](https://visualstudio.microsoft.com/)
 
 # 📜 License
 * MIT
 
 # 👾 Authors
-* [Shun Moriya](https://twitter.com/moriya_zx25r)
-* [Nonbiri](https://www.youtube.com/channel/UCkLXe57GpUyaOoj2ycREU1Q)
+* Shun Moriya [[Twitter](https://twitter.com/moriya_zx25r)]
+* Nonbiri [[Twitter](https://twitter.com/happy_game_dev)] / [[YouTube](https://www.youtube.com/channel/UCkLXe57GpUyaOoj2ycREU1Q)]
