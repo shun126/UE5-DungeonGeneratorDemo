@@ -2,14 +2,13 @@
 
 > Easy generation of levels, mini-maps and missions.
 
-This is a demo project for [Dungeon generator plugin for Unreal Engine 4 and 5](https://www.unrealengine.com/marketplace/slug/36a8b87d859f44439cfe1515975d7197).
+This is a demo project for [Dungeon generator plugin for Unreal Engine 5](https://www.unrealengine.com/marketplace/slug/36a8b87d859f44439cfe1515975d7197).
 
 [![license](https://img.shields.io/github/license/shun126/UE5-DungeonGeneratorDemo)](https://github.com/shun126/UE5-DungeonGeneratorDemo/blob/main/LICENSE)
 [![downloads](https://img.shields.io/github/downloads/shun126/UE5-DungeonGeneratorDemo/total)](https://github.com/shun126/UE5-DungeonGeneratorDemo/releases)
 [![stars](https://img.shields.io/github/stars/shun126/UE5-DungeonGeneratorDemo?style=social)](https://github.com/shun126/UE5-DungeonGeneratorDemo/stargazers)
 [![youtube](https://img.shields.io/youtube/views/HIW4mRt2_AA?style=social)](https://youtu.be/HIW4mRt2_AA)
 
-* Demo project for Unreal Engine 4 is [here](https://github.com/shun126/UE4-DungeonGeneratorDemo).
 * Trailer video: [YouTube](https://youtu.be/HIW4mRt2_AA)
 * Tutorial videos: [YouTube](https://www.youtube.com/playlist?list=PLlMDkSa8bQnK4PDIfkXYorQIucn47ifKO)
 
@@ -35,13 +34,14 @@ The dungeon generator was based on Vazgriz's algorithm. You can read more about 
 * Tiled Dungeon Generation both In-Editor & Runtime
 * Users can easily generate dungeons by preparing meshes for floors, walls, ceilings, and stairs.
 * A mini-map of the dungeon can be generated. [beta version]
+* Merging sub-levels into the generating dungeon. [beta version]
 * Generates actors for doors and keys by MissionGraph. [beta version]
 * Generates interior decoration by InteriorDecorator. [beta version]
 * Supported Development Platforms: Windows (should be possible to build on all platforms)
 * Supported Target Build Platforms: Windows (should be possible to target all platforms)
 
 # 🔧 Requirements
-* [Unreal Engine 5.0 - 5.2.1](https://www.unrealengine.com/unreal-engine-5)
+* [Unreal Engine 5.3](https://www.unrealengine.com/unreal-engine-5)
 * [Visual Studio 2022](https://visualstudio.microsoft.com/)
 
 # 📜 License
