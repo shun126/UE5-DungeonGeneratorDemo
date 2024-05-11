@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.3",
+	"EngineAssociation": "5.4",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -20,11 +20,6 @@
 			"TargetAllowList": [
 				"Editor"
 			]
-		},
-		{
-			"Name": "DungeonGenerator",
-			"Enabled": true,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/36a8b87d859f44439cfe1515975d7197"
 		}
 	]
 }
