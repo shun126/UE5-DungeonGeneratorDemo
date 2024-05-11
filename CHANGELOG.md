@@ -1,10 +1,62 @@
 # Change Log - Procedural 3D Dungeon Generator Plug-in
 
-## [Unreleased] -1.5.6 (20)
+## Unreleased-1.5.12 (26)
 ### Changes
 *
 ### 変更点
 *
+
+## 20240512-1.5.11 (25)
+### Changes
+* Changed so that candelabras can be spawned without pillars
+* Added sub-level lottery establishment
+* Fixed a bug with multiplayer support
+  * Changed room sensors, doors, candelabra, and interiors to spawn only on server
+  * Temporarily removed `Spawn on client
+### 変更点
+* 柱が無くても燭台をスポーンできるように変更
+* サブレベルの抽選確立を追加
+* マルチプレイヤー対応の不具合を修正
+  * 部屋センサー、ドア、燭台、インテリアはサーバーのみスポーンするように変更
+  * `Spawn on client`の一時的な廃止
+
+## 20240424-1.5.10 (24)
+### Changes
+* Added door generation probability to DungeonRoomSensor
+* Unreal Engine 5.4 support
+### 変更点
+* ドアの生成確率をDungeonRoomSensorに追加
+* Unreal Engine 5.4対応
+
+## 20240327-1.5.9 (23)
+### Changes
+* Fixed several bugs
+### 変更点
+* いくつかの不具合を修正
+
+## 20240325-1.5.8 (22)
+### Changes
+* パラメータへのコメントを追加
+* 生成時の余白を追加
+### 変更点
+* Added comments to parameters
+* Added margins for generation
+
+## 20240223-1.5.7 (21)
+### Changes
+* Changed to discard Editor-only actors at runtime generation
+* Fixed several bugs
+### 変更点
+* ランタイム生成時にEditorのみのアクターを破棄するように変更
+* いくつかの不具合を修正
+
+## 20240210-1.5.6 (20)
+### Changes
+* Added rules for generating torch
+* Fixed several bugs
+### 変更点
+* 燭台の生成ルールを追加
+* いくつかの不具合を修正
 
 ## 20240201-1.5.5 (19)
 ### Changes
