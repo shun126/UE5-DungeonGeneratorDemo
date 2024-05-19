@@ -8,7 +8,7 @@ public class DungeonGeneratorDemoEditorTarget : TargetRules
 	public DungeonGeneratorDemoEditorTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
-		DefaultBuildSettings = BuildSettingsVersion.V4;
+		DefaultBuildSettings = BuildSettingsVersion.Latest;
 
 		ExtraModuleNames.AddRange( new string[] { "DungeonGeneratorDemo" } );
 	}
