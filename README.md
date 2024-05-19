@@ -1,4 +1,4 @@
-# Dungeon generator plugin for Unreal Engine 5
+# Dungeon generator plugin Demo for Unreal Engine 5
 > Easy generation of levels, mini-maps and missions.
 
 This is a demo project for [Dungeon generator plugin for Unreal Engine 5](https://www.unrealengine.com/marketplace/slug/36a8b87d859f44439cfe1515975d7197).
@@ -41,12 +41,12 @@ The dungeon generator was based on Vazgriz's algorithm. You can read more about 
 * Supported Target Build Platforms: Windows (should be possible to target all platforms)
 
 # 🔧 Requirements
-* [Unreal Engine 5.3](https://www.unrealengine.com/unreal-engine-5)
+* [Unreal Engine 5.4](https://www.unrealengine.com/unreal-engine-5)
 * [Visual Studio 2022](https://visualstudio.microsoft.com/)
 
 # 📜 License
 * MIT
 
 # 👾 Authors
-* Shun Moriya [[Twitter](https://twitter.com/moriya_zx25r)]
 * Nonbiri [[Twitter](https://twitter.com/happy_game_dev)] / [[YouTube](https://www.youtube.com/channel/UCkLXe57GpUyaOoj2ycREU1Q)]
+* Shun Moriya [[Twitter](https://twitter.com/moriya_zx25r)]
