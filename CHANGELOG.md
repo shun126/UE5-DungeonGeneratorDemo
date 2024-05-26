@@ -1,10 +1,20 @@
 # Change Log - Procedural 3D Dungeon Generator Plug-in
 
-## Unreleased-1.5.13 (27)
+## Unreleased-1.5.14 (28)
 ### Changes
 *
 ### 変更点
 *
+
+## 20240526-1.5.13 (27)
+### Changes
+* Verified stable routing
+* Fixed the search for the location of the gate in the starting room
+* Fixed several bugs
+### 変更点
+* 安定した経路作成の検証
+* 開始部屋の門の位置の検索を修正
+* いくつかの不具合を修正
 
 ## 20240519-1.5.12 (26)
 ### Changes
