@@ -1,17 +1,31 @@
 # Change Log - Procedural 3D Dungeon Generator Plug-in
 
-## Unreleased-1.5.15 (29)
+## Unreleased-1.6.* (30)
 ### Changes
-*
 ### 変更点
-* 
 
-## 20240606-1.5.14 (28)
+## 20240615-1.6.0 (29)
 ### Changes
-* Changed the start position of sublevels to be included in the selection
-* Fixed some bugs
+* Vertical and horizontal grid size can be set individually
+* Random numbers in DungeonRoomSensorBase can be selected between synchronous and asynchronous
+* Add start and end sublevels to MissionGraph
+* Add information on whether a passage is a main line or a detour
+* Improved complexity algorithm and generation stability of corridors
+* Fixed several bugs
 ### 変更点
-* サブレベルのスタート位置を選択に含める様に変更
+* グリッドサイズの垂直サイズと水平サイズを個別に設定可能
+* DungeonRoomSensorBaseの乱数を同期と非同期から選択可能
+* MissionGraphに開始と終了のサブレベルを対応
+* 通路に幹線か迂回か情報を追加
+* 通路の複雑性アルゴリズムと生成の安定性が改善
+* いくつかの不具合を修正
+
+## 20240529-1.5.14 (28)
+### Changes
+* Include sublevel `PlayerStart` in the selection of the start position
+* Fixed several bugs
+### 変更点
+* サブレベルの`PlayerStart`をスタート位置の選択に含める
 * いくつかの不具合を修正
 
 ## 20240526-1.5.13 (27)
