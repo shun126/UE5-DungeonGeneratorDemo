@@ -3,6 +3,7 @@
 
 This is a demo project for [Dungeon generator plugin for Unreal Engine 5](https://www.unrealengine.com/marketplace/slug/36a8b87d859f44439cfe1515975d7197).
 
+[![Unreal Engine Supported Versions](https://img.shields.io/badge/Unreal_Engine-5.4-9455CE?logo=unrealengine)](https://www.unrealengine.com/)
 [![license](https://img.shields.io/github/license/shun126/UE5-DungeonGeneratorDemo)](https://github.com/shun126/UE5-DungeonGeneratorDemo/blob/main/LICENSE)
 [![downloads](https://img.shields.io/github/downloads/shun126/UE5-DungeonGeneratorDemo/total)](https://github.com/shun126/UE5-DungeonGeneratorDemo/releases)
 [![stars](https://img.shields.io/github/stars/shun126/UE5-DungeonGeneratorDemo?style=social)](https://github.com/shun126/UE5-DungeonGeneratorDemo/stargazers)
@@ -29,16 +30,17 @@ The dungeon generator was based on Vazgriz's algorithm. You can read more about 
 
 # 🎨 Features
 
-* DungeonGenerator is a plug-in for UnrealEngine.
-* Tiled Dungeon Generation both In-Editor & Runtime
+* DungeonGenerator is a plug-in for UnrealEngine5.
+* Tiled Dungeon Generation both In-Editor & Runtime.
 * Users can easily generate dungeons by preparing meshes for floors, walls, ceilings, and stairs.
 * Supports dungeon replication
-* Interior decoration. [beta version]
-* A mini-map of the dungeon can be generated. [beta version]
-* Merging sub-levels into the generating dungeon. [beta version]
-* Generates actors for doors and keys by MissionGraph. [beta version]
-* Supported Development Platforms: Windows (should be possible to build on all platforms)
-* Supported Target Build Platforms: Windows (should be possible to target all platforms)
+* Generates actors for doors and keys by MissionGraph.
+* The following features are supported only in the [Unreal Engine marketplace](https://www.unrealengine.com/marketplace/slug/36a8b87d859f44439cfe1515975d7197) version
+  * Sub-levels can be applied as dungeon rooms
+  * A mini-map of the dungeon can be generated.
+  * Interior decoration. [beta version]
+* Supported Development Platforms: Windows,Android
+* Supported Target Build Platforms: Windows,Android (should be possible to target all platforms)
 
 # 🔧 Requirements
 * [Unreal Engine 5.4](https://www.unrealengine.com/unreal-engine-5)
