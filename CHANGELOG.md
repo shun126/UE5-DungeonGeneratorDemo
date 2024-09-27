@@ -1,8 +1,96 @@
 # Change Log - Procedural 3D Dungeon Generator Plug-in
 
-## Unreleased-1.6.* (30)
+## Unreleased-1.6.* (38)
 ### Changes
 ### 変更点
+
+## 20240926-1.6.8 (37)
+### Changes
+* Fixed a bug in the GenerateDungeon function that caused StaticMesh generation to fail.
+### 変更点
+* GenerateDungeon関数でStaticMeshの生成に失敗する不具合を修正
+
+## 20240915-1.6.7 (36)
+### Changes
+* Added support for indoor staircase generation
+* Added sublevels that prioritize generation
+* Improved passageway generation
+* Improved room separation method
+* Fixed a bug that caused MissionGraph to generate levels that could not be cleared
+* Fixed several bugs
+### 変更点
+* 室内の階段生成に対応
+* 生成を優先するサブレベルを追加
+* 通路生成の改善
+* 部屋の分離方法の改善
+* MissionGraphがクリアできないレベルを生成する不具合を修正
+* いくつかの不具合を修正
+
+## 20240901-1.6.6 (35)
+### Changes
+* Added candidate number of levels
+* Added automatic generation of Foliage
+* Fixed problem with doors lining up
+* Changed dungeon generation path
+* Extensive refactoring
+* Fixed several bugs
+### 変更点
+* 階層数の候補を追加
+* Foliageの自動生成を追加
+* ドアが並ぶ問題を修正
+* ダンジョンの生成パスを変更
+* 大規模なリファクタリングを実施
+* いくつかの不具合を修正
+
+## 20240812-1.6.5 (34)
+### Changes
+* Fixed layer calculation for TransformWorldToRadarWithLayer
+* Some refactoring
+### 変更点
+* TransformWorldToRadarWithLayerのレイヤー計算を修正
+* いくつかのリファクタリングを実施
+
+## 20240806-1.6.4 (33)
+### Changes
+* Fixed crash during minimap generation in UE5.3
+### 変更点
+* UE5.3以前でミニマップの生成時にクラッシュする問題を修正
+
+## 20240803-1.6.3 (32)
+### Changes
+* Fixed incorrect spawn positions for small items used for interior decoration
+* Fixed minimap textures not being output
+* Trial version support
+* Fixed several bugs
+### 変更点
+* 内装に使う小物のスポーン位置が不正になる問題を修正
+* ミニマップテクスチャが出力されない問題を修正
+* 体験版対応
+* いくつかの不具合を修正
+
+## 20240729-1.6.2 (31)
+### Changes
+* Changed to generate the dungeon at the origin of DungeonGenerateActor.
+* Added notifications for dungeon generation success and failure to DungeonGenerateActor.
+* Added a list of PlayerStart locations moved to DungeonGenerateActor.
+* Fixed several bugs.
+### 変更点
+* DungeonGenerateActorを原点にダンジョンを生成するように変更
+* ダンジョン生成の成功と失敗の通知をDungeonGenerateActorに追加
+* DungeonGenerateActorに移動したPlayerStartの一覧を追加
+* いくつかの不具合を修正
+
+## 20240707-1.6.1 (30)
+### Changes
+* Fixed 'FindTeleportSpot' warning in HISM mode
+* Added helper widget and function for minimap
+* Improved complexity algorithm and generation stability of aisle
+* Fixed several bugs
+### 変更点
+* HISM modeで起こる'FindTeleportSpot'警告を修正
+* ミニマップの為のヘルパーウィジットと関数を追加
+* 通路の複雑性アルゴリズムと生成の安定性を改善
+* いくつかの不具合を修正
 
 ## 20240615-1.6.0 (29)
 ### Changes
