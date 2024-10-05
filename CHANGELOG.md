@@ -1,8 +1,22 @@
 # Change Log - Procedural 3D Dungeon Generator Plug-in
 
-## Unreleased-1.6.* (38)
+## Unreleased-1.6.* (40)
 ### Changes
 ### 変更点
+
+## 20241005-1.6.10 (39)
+### Changes
+* Fixed several bugs
+### 変更点
+* いくつかの不具合を修正
+
+## 20240927-1.6.9 (38)
+### Changes
+* Fixed a bug when sublevels were not specified
+* Added assets available in the top view
+### 変更点
+* サブレベルを指定していない時の不具合を修正
+* トップビューで利用可能なアセットを追加
 
 ## 20240926-1.6.8 (37)
 ### Changes
