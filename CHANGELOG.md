@@ -6,8 +6,10 @@
 
 ## 20241005-1.6.10 (39)
 ### Changes
+* Review UCLASS attributes
 * Fixed several bugs
 ### 変更点
+* UCLASSの属性を見直し
 * いくつかの不具合を修正
 
 ## 20240927-1.6.9 (38)
