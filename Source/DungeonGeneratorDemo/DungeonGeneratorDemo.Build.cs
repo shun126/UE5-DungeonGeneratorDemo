@@ -24,6 +24,13 @@ public class DungeonGeneratorDemo : ModuleRules
 			"DungeonGenerator"
 		});
 
-		// To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true
-	}
+        if (
+			Target.Platform == UnrealTargetPlatform.Win64 ||
+			Target.Platform == UnrealTargetPlatform.Linux)
+		{
+			PrivateDependencyModuleNames.Add("OnlineSubsystemSteam");
+        }
+
+        // To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true
+    }
 }
