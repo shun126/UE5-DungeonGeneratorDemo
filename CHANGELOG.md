@@ -1,8 +1,58 @@
 # Change Log - Procedural 3D Dungeon Generator Plug-in
 
-## Unreleased-1.6.* (40)
+## Unreleased-1.6.* (44)
 ### Changes
 ### 変更点
+
+## Unreleased-1.6.14 (43)
+### Changes
+* Fixed problem with incorrect distance from starting room
+* Fixed several bugs
+### 変更点
+* スタート部屋からの距離が不正になる問題を修正
+* いくつかの不具合を修正
+
+## Unreleased-1.6.13 (42)
+### Changes
+* Support for Unreal Engine 5.5.1
+* Fixed an issue where the starting position would be incorrect in rooms with 2 grids or less
+* Fixed an issue where vegetation in the center of the room was appearing on the roof
+* Added direction for Catwalk floors
+* Fixed several bugs
+### 変更点
+* Unreal Engine 5.5.1対応
+* ２グリッド以下の部屋で開始位置が不正になる問題を修正
+* 部屋の中心の植生が屋根に出ていた問題を修正
+* Catwalkの床の方向を追加
+* いくつかの不具合を修正
+
+## 20241027-1.6.12 (41)
+### Changes
+* Deprecated DungeonAisleMeshSetDatabase and DungeonRoomMeshSetDatabase, and introduced DungeonMeshDatabase.
+* Fixed an issue where rooms could exceed the maximum size.
+* Resolved an issue where sublevels were not unloading properly.
+* Fixed activation of main level partitioning during multiplayer
+* Fixed several bugs
+### 変更点
+* DungeonAisleMeshSetDatabaseとDungeonRoomMeshSetDatabaseを非推奨にしてDungeonMeshDatabaseを新設しました
+* 部屋が最大サイズよりも大きくなる問題を修正
+* サブレベルが解放されない問題を修正
+* マルチプレイヤー時のメインレベルのパーティエーションの有効化を修正
+* いくつかの不具合を修正
+
+## 20241017-1.6.11 (40)
+### Changes
+* Added demo map
+* modified content names
+* Refactoring UCLASS attributes
+* Fixed problem with rooms becoming larger than maximum size
+* Fixed several bugs
+### 変更点
+* デモ用マップを追加
+* コンテンツ名を修正
+* UCLASS属性の見直し
+* 部屋が最大サイズよりも大きくなる問題を修正
+* いくつかの不具合を修正
 
 ## 20241005-1.6.10 (39)
 ### Changes

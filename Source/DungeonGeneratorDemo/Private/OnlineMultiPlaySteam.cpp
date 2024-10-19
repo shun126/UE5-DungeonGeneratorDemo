@@ -1,4 +1,8 @@
-/*
+/**
+@author		Shun Moriya
+@copyright	2024- Shun Moriya
+All Rights Reserved.
+
 Steamオンラインシステムアクター
 https://tech.dentsusoken.com/entry/onlinemultiplay-cpp
 */

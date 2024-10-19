@@ -1,4 +1,8 @@
-// Narcis software
+/**
+@author		Shun Moriya
+@copyright	2024- Shun Moriya
+All Rights Reserved.
+*/
 
 using UnrealBuildTool;
 
@@ -20,7 +24,7 @@ public class DungeonGeneratorDemo : ModuleRules
 		// PrivateDependencyModuleNames.Add("OnlineSubsystem");
 		PrivateDependencyModuleNames.AddRange(new string[] {
 			"AIModule", "NavigationSystem",
-			"OnlineSubsystemSteam", "OnlineSubsystem",
+			"OnlineSubsystem",
 			"DungeonGenerator"
 		});
 

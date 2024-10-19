@@ -24,6 +24,10 @@
 		{
 			"Name": "OnlineSubsystemSteam",
 			"Enabled": true
+		},
+		{
+			"Name": "DungeonGenerator",
+			"Enabled": true
 		}
 	]
 }
