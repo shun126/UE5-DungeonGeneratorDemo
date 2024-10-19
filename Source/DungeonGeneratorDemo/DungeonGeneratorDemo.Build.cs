@@ -20,7 +20,7 @@ public class DungeonGeneratorDemo : ModuleRules
 		// PrivateDependencyModuleNames.Add("OnlineSubsystem");
 		PrivateDependencyModuleNames.AddRange(new string[] {
 			"AIModule", "NavigationSystem",
-			"OnlineSubsystemSteam", "OnlineSubsystem",
+			"OnlineSubsystem",
 			"DungeonGenerator"
 		});
 
