@@ -1,10 +1,194 @@
 # Change Log - Procedural 3D Dungeon Generator Plug-in
 
+<<<<<<< HEAD
 ## Unreleased-1.5.14 (28)
 ### Changes
 *
 ### 変更点
 *
+=======
+## Unreleased-1.6.* (44)
+### Changes
+### 変更点
+
+## Unreleased-1.6.14 (43)
+### Changes
+* Fixed problem with incorrect distance from starting room
+* Fixed several bugs
+### 変更点
+* スタート部屋からの距離が不正になる問題を修正
+* いくつかの不具合を修正
+
+## Unreleased-1.6.13 (42)
+### Changes
+* Support for Unreal Engine 5.5.1
+* Fixed an issue where the starting position would be incorrect in rooms with 2 grids or less
+* Fixed an issue where vegetation in the center of the room was appearing on the roof
+* Added direction for Catwalk floors
+* Fixed several bugs
+### 変更点
+* Unreal Engine 5.5.1対応
+* ２グリッド以下の部屋で開始位置が不正になる問題を修正
+* 部屋の中心の植生が屋根に出ていた問題を修正
+* Catwalkの床の方向を追加
+* いくつかの不具合を修正
+
+## 20241027-1.6.12 (41)
+### Changes
+* Deprecated DungeonAisleMeshSetDatabase and DungeonRoomMeshSetDatabase, and introduced DungeonMeshDatabase.
+* Fixed an issue where rooms could exceed the maximum size.
+* Resolved an issue where sublevels were not unloading properly.
+* Fixed activation of main level partitioning during multiplayer
+* Fixed several bugs
+### 変更点
+* DungeonAisleMeshSetDatabaseとDungeonRoomMeshSetDatabaseを非推奨にしてDungeonMeshDatabaseを新設しました
+* 部屋が最大サイズよりも大きくなる問題を修正
+* サブレベルが解放されない問題を修正
+* マルチプレイヤー時のメインレベルのパーティエーションの有効化を修正
+* いくつかの不具合を修正
+
+## 20241017-1.6.11 (40)
+### Changes
+* Added demo map
+* modified content names
+* Refactoring UCLASS attributes
+* Fixed problem with rooms becoming larger than maximum size
+* Fixed several bugs
+### 変更点
+* デモ用マップを追加
+* コンテンツ名を修正
+* UCLASS属性の見直し
+* 部屋が最大サイズよりも大きくなる問題を修正
+* いくつかの不具合を修正
+
+## 20241005-1.6.10 (39)
+### Changes
+* Review UCLASS attributes
+* Fixed several bugs
+### 変更点
+* UCLASSの属性を見直し
+* いくつかの不具合を修正
+
+## 20240927-1.6.9 (38)
+### Changes
+* Fixed a bug when sublevels were not specified
+* Added assets available in the top view
+### 変更点
+* サブレベルを指定していない時の不具合を修正
+* トップビューで利用可能なアセットを追加
+
+## 20240926-1.6.8 (37)
+### Changes
+* Fixed a bug in the GenerateDungeon function that caused StaticMesh generation to fail.
+### 変更点
+* GenerateDungeon関数でStaticMeshの生成に失敗する不具合を修正
+
+## 20240915-1.6.7 (36)
+### Changes
+* Added support for indoor staircase generation
+* Added sublevels that prioritize generation
+* Improved passageway generation
+* Improved room separation method
+* Fixed a bug that caused MissionGraph to generate levels that could not be cleared
+* Fixed several bugs
+### 変更点
+* 室内の階段生成に対応
+* 生成を優先するサブレベルを追加
+* 通路生成の改善
+* 部屋の分離方法の改善
+* MissionGraphがクリアできないレベルを生成する不具合を修正
+* いくつかの不具合を修正
+
+## 20240901-1.6.6 (35)
+### Changes
+* Added candidate number of levels
+* Added automatic generation of Foliage
+* Fixed problem with doors lining up
+* Changed dungeon generation path
+* Extensive refactoring
+* Fixed several bugs
+### 変更点
+* 階層数の候補を追加
+* Foliageの自動生成を追加
+* ドアが並ぶ問題を修正
+* ダンジョンの生成パスを変更
+* 大規模なリファクタリングを実施
+* いくつかの不具合を修正
+
+## 20240812-1.6.5 (34)
+### Changes
+* Fixed layer calculation for TransformWorldToRadarWithLayer
+* Some refactoring
+### 変更点
+* TransformWorldToRadarWithLayerのレイヤー計算を修正
+* いくつかのリファクタリングを実施
+
+## 20240806-1.6.4 (33)
+### Changes
+* Fixed crash during minimap generation in UE5.3
+### 変更点
+* UE5.3以前でミニマップの生成時にクラッシュする問題を修正
+
+## 20240803-1.6.3 (32)
+### Changes
+* Fixed incorrect spawn positions for small items used for interior decoration
+* Fixed minimap textures not being output
+* Trial version support
+* Fixed several bugs
+### 変更点
+* 内装に使う小物のスポーン位置が不正になる問題を修正
+* ミニマップテクスチャが出力されない問題を修正
+* 体験版対応
+* いくつかの不具合を修正
+
+## 20240729-1.6.2 (31)
+### Changes
+* Changed to generate the dungeon at the origin of DungeonGenerateActor.
+* Added notifications for dungeon generation success and failure to DungeonGenerateActor.
+* Added a list of PlayerStart locations moved to DungeonGenerateActor.
+* Fixed several bugs.
+### 変更点
+* DungeonGenerateActorを原点にダンジョンを生成するように変更
+* ダンジョン生成の成功と失敗の通知をDungeonGenerateActorに追加
+* DungeonGenerateActorに移動したPlayerStartの一覧を追加
+* いくつかの不具合を修正
+
+## 20240707-1.6.1 (30)
+### Changes
+* Fixed 'FindTeleportSpot' warning in HISM mode
+* Added helper widget and function for minimap
+* Improved complexity algorithm and generation stability of aisle
+* Fixed several bugs
+### 変更点
+* HISM modeで起こる'FindTeleportSpot'警告を修正
+* ミニマップの為のヘルパーウィジットと関数を追加
+* 通路の複雑性アルゴリズムと生成の安定性を改善
+* いくつかの不具合を修正
+
+## 20240615-1.6.0 (29)
+### Changes
+* Vertical and horizontal grid size can be set individually
+* Random numbers in DungeonRoomSensorBase can be selected between synchronous and asynchronous
+* Add start and end sublevels to MissionGraph
+* Add information on whether a passage is a main line or a detour
+* Improved complexity algorithm and generation stability of corridors
+* Fixed several bugs
+### 変更点
+* グリッドサイズの垂直サイズと水平サイズを個別に設定可能
+* DungeonRoomSensorBaseの乱数を同期と非同期から選択可能
+* MissionGraphに開始と終了のサブレベルを対応
+* 通路に幹線か迂回か情報を追加
+* 通路の複雑性アルゴリズムと生成の安定性が改善
+* いくつかの不具合を修正
+
+## 20240529-1.5.14 (28)
+### Changes
+* Include sublevel `PlayerStart` in the selection of the start position
+* Fixed several bugs
+### 変更点
+* サブレベルの`PlayerStart`をスタート位置の選択に含める
+* いくつかの不具合を修正
+>>>>>>> origin/54-steam
 
 ## 20240526-1.5.13 (27)
 ### Changes
