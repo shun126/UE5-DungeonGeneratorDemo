@@ -20,8 +20,6 @@
 			"TargetAllowList": [
 				"Editor"
 			]
-<<<<<<< HEAD
-=======
 		},
 		{
 			"Name": "OnlineSubsystemSteam",
@@ -30,7 +28,6 @@
 		{
 			"Name": "DungeonGenerator",
 			"Enabled": true
->>>>>>> origin/54-steam
 		}
 	]
 }

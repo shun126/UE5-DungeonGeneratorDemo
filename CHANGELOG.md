@@ -1,12 +1,5 @@
 # Change Log - Procedural 3D Dungeon Generator Plug-in
 
-<<<<<<< HEAD
-## Unreleased-1.5.14 (28)
-### Changes
-*
-### 変更点
-*
-=======
 ## Unreleased-1.6.* (44)
 ### Changes
 ### 変更点
@@ -188,7 +181,6 @@
 ### 変更点
 * サブレベルの`PlayerStart`をスタート位置の選択に含める
 * いくつかの不具合を修正
->>>>>>> origin/54-steam
 
 ## 20240526-1.5.13 (27)
 ### Changes
