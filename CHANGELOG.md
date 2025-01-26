@@ -1,10 +1,48 @@
 # Change Log - Procedural 3D Dungeon Generator Plug-in
 
-## Unreleased-1.6.* (44)
+## Unreleased-1.6.* (47)
 ### Changes
 ### 変更点
 
-## Unreleased-1.6.14 (43)
+## 20250301-1.6.17 (46)
+### Changes
+* Added DungeonMeshSet draw method
+* Changed DungeonMainLevelScriptActor load control availability to be configurable
+* Changed navigation generation and culling distance for Instanced Static Mesh
+* Added CastShadow validity control if point light and spot light are not Static
+* Added mask texture for minimap
+* Changed interiors to be generated for actors placed on sublevels
+* modified plugin assets
+* Fixed several bugs
+### 変更点
+* DungeonMeshSetの抽選方法を追加
+* DungeonMainLevelScriptActorの負荷制御の有効性を設定可能に変更
+* Instanced Static Meshのナビゲーション生成とカリング距離を変更
+* ポイントライトとスポットライトがStatic以外ならCastShadowの有効性制御を追加
+* ミニマップのマスクテクスチャを追加
+* サブレベルに配置されたアクターにも内装を生成するように変更
+* プラグインアセットを修正
+* いくつかの不具合を修正
+
+## 20250130-1.6.16 (45)
+### Changes
+* Modified load reduction algorithm
+* Fixed several bugs
+### 変更点
+* 負荷軽減アルゴリズムを変更
+* いくつかの不具合を修正
+
+## 20250122-1.6.15 (44)
+### Changes
+* Fixed a problem where a gate was not formed when a staircase connected to a room.
+* Changed the order in which vegetation is generated to after interiors
+* Fixed several bugs
+### 変更点
+* 階段と部屋がつながった時に門ができていない不具合の修正
+* 植生の生成順序をインテリアよりも後に変更
+* いくつかの不具合を修正
+
+## 20250108-1.6.14 (43)
 ### Changes
 * Fixed problem with incorrect distance from starting room
 * Fixed several bugs
@@ -12,7 +50,7 @@
 * スタート部屋からの距離が不正になる問題を修正
 * いくつかの不具合を修正
 
-## Unreleased-1.6.13 (42)
+## 20241218-1.6.13 (42)
 ### Changes
 * Support for Unreal Engine 5.5.1
 * Fixed an issue where the starting position would be incorrect in rooms with 2 grids or less
@@ -433,4 +471,3 @@
 * Initial release version
 ### 変更点
 * 初回リリース版
-

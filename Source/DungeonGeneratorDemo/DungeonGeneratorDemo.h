@@ -1,8 +1,4 @@
-/**
-@author		Shun Moriya
-@copyright	2024- Shun Moriya
-All Rights Reserved.
-*/
+// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 

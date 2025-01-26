@@ -4,10 +4,6 @@
 All Rights Reserved.
 
 ダンジョンクローラーアクター
-
-クライアント側でナビゲーションメッシュを有効にするには
-「プロジェクト設定＞ナビゲーションシステム＞クライアント側のナビゲーションメッシュを許可」の設が必要
-https://forums.unrealengine.com/t/allow-client-side-navigation-walks-in-place/361878/4
 */
 
 #include "DungeonCrawlerBase.h"
@@ -19,11 +15,20 @@ https://forums.unrealengine.com/t/allow-client-side-navigation-walks-in-place/36
 #include <Kismet/GameplayStatics.h>
 #include <Kismet/KismetSystemLibrary.h>
 
+/*
+ * 定義するとクライアントのプレイヤーも巡回します
+ *
+ * クライアント側でナビゲーションメッシュを有効にするには
+ * 「プロジェクト設定＞ナビゲーションシステム＞クライアント側のナビゲーションメッシュを許可」の設定が必要
+ * https://forums.unrealengine.com/t/allow-client-side-navigation-walks-in-place/361878/4
+ */
+#define ENABLE_MULTI_CRAWLER
+
 #if WITH_EDITOR
 /*
 有効にするとデバッグ情報を描画します
 */
-//#define _ENABLE_LOCAL_DEBUG_
+#define _ENABLE_LOCAL_DEBUG_
 #endif
 
 namespace
@@ -83,8 +88,11 @@ void ADungeonCrawlerBase::Tick(float deltaSeconds)
 	Super::Tick(deltaSeconds);
 
 	// サーバーなら巡回する
-	if (HasAuthority() /* || IsPlayerControlled()*/)
-	{
+	if (HasAuthority()
+#if defined(ENABLE_MULTI_CRAWLER)
+		|| IsPlayerControlled()
+#endif
+	){
 		TickImpl(deltaSeconds);
 	}
 }
