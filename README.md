@@ -5,11 +5,11 @@
 [![release](https://img.shields.io/github/v/release/shun126/DungeonGenerator)](https://github.com/shun126/UE5-DungeonGeneratorDemo/releases)
 [![downloads](https://img.shields.io/github/downloads/shun126/UE5-DungeonGeneratorDemo/total)](https://github.com/shun126/UE5-DungeonGeneratorDemo/releases)
 [![stars](https://img.shields.io/github/stars/shun126/UE5-DungeonGeneratorDemo?style=social)](https://github.com/shun126/UE5-DungeonGeneratorDemo/stargazers)
-[![youtube](https://img.shields.io/youtube/views/HIW4mRt2_AA?style=social)](https://youtu.be/HIW4mRt2_AA)
+[![youtube](https://img.shields.io/youtube/views/1igd4pls5x8?style=social)](https://youtu.be/1igd4pls5x8)
 
 This is a demo project for [Dungeon generator plugin for Unreal Engine 5](https://www.unrealengine.com/marketplace/slug/36a8b87d859f44439cfe1515975d7197).
 
-* Trailer video: [YouTube](https://youtu.be/HIW4mRt2_AA)
+* Trailer video: [YouTube](https://youtu.be/1igd4pls5x8)
 * Tutorial videos: [YouTube](https://www.youtube.com/playlist?list=PLlMDkSa8bQnK4PDIfkXYorQIucn47ifKO)
 * You can download the [free trial version here](https://github.com/shun126/DungeonGenerator).
 
