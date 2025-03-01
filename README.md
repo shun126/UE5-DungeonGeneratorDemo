@@ -1,8 +1,8 @@
 # Dungeon generator plugin Demo for Unreal Engine 5
 
-[![Unreal Engine Supported Versions](https://img.shields.io/badge/Unreal_Engine-5.4-9455CE?logo=unrealengine)](https://www.unrealengine.com/)
+[![Unreal Engine Supported Versions](https://img.shields.io/badge/Unreal_Engine-5.1~5.5-9455CE?logo=unrealengine)](https://www.unrealengine.com/)
 [![license](https://img.shields.io/github/license/shun126/UE5-DungeonGeneratorDemo)](https://github.com/shun126/UE5-DungeonGeneratorDemo/blob/main/LICENSE)
-[![release](https://img.shields.io/github/v/release/shun126/DungeonGenerator)](https://github.com/shun126/UE5-DungeonGeneratorDemo/releases)
+[![release](https://img.shields.io/github/v/release/shun126/UE5-DungeonGeneratorDemo)](https://github.com/shun126/UE5-DungeonGeneratorDemo/releases)
 [![downloads](https://img.shields.io/github/downloads/shun126/UE5-DungeonGeneratorDemo/total)](https://github.com/shun126/UE5-DungeonGeneratorDemo/releases)
 [![stars](https://img.shields.io/github/stars/shun126/UE5-DungeonGeneratorDemo?style=social)](https://github.com/shun126/UE5-DungeonGeneratorDemo/stargazers)
 [![youtube](https://img.shields.io/youtube/views/1igd4pls5x8?style=social)](https://youtu.be/1igd4pls5x8)
@@ -12,6 +12,7 @@ This is a demo project for [Dungeon generator plugin for Unreal Engine 5](https:
 * Trailer video: [YouTube](https://youtu.be/1igd4pls5x8)
 * Tutorial videos: [YouTube](https://www.youtube.com/playlist?list=PLlMDkSa8bQnK4PDIfkXYorQIucn47ifKO)
 * You can download the [free trial version here](https://github.com/shun126/DungeonGenerator).
+* Trial version is [here](https://github.com/shun126/DungeonGenerator)
 
 Revolutionize your dungeon creation process with our new Unreal Engine plugin! Enjoy freedom and customize your own rulesets to offer players unique and engaging dungeon exploration experiences. Say goodbye to the hassle of manual dungeon building and welcome the new age of dungeon exploration!
 
@@ -68,6 +69,6 @@ The [Unreal Engine marketplace](https://www.unrealengine.com/marketplace/slug/36
 
 # 👾 Authors
 * [Nonbiri](https://www.youtube.com/channel/UCkLXe57GpUyaOoj2ycREU1Q)
-* [Shun Moriya](https://twitter.com/moriya_zx25r)
+* [Shun Moriya](https://x.com/monjiro1972)
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/M4M413XDXB)
