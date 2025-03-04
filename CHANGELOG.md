@@ -1,8 +1,14 @@
 # Change Log - Procedural 3D Dungeon Generator Plug-in
 
-## Unreleased-1.6.* (47)
+## Unreleased-1.6.* (48)
 ### Changes
 ### 変更点
+
+## Unreleased-1.6.18 (47)
+### Changes
+### 変更点
+* 部屋の二階以上の燭台のポイントライト、スポットライトのCastShadowを無効化できるよう追加
+* ミニマップのマスクテクスチャに矩形を描画できるように追加
 
 ## 20250301-1.6.17 (46)
 ### Changes
