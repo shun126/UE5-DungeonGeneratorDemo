@@ -29,16 +29,12 @@ protected:
 	virtual void TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
 
 protected:
-	// 攻撃対象のアクター
-	UPROPERTY(EditAnywhere, Category = "AttackMoveTo")
-	FBlackboardKeySelector AttackingTargetBlackboardKey;
-
 	// 移動をキャンセルする攻撃対象のアクターとの距離
-	UPROPERTY(EditAnywhere, Category = "AttackMoveTo")
+	UPROPERTY(EditAnywhere, Category = "Blackboard|AttackMoveTo")
 	FFloatInterval DistanceToCancelMovement = { 100.f, 200.f };
 
 	// 一度遠のいてから判定する
-	UPROPERTY(EditAnywhere, Category = "AttackMoveTo")
+	UPROPERTY(EditAnywhere, Category = "Blackboard|AttackMoveTo")
 	bool OnceAwayFromOpponent = false;
 
 private:

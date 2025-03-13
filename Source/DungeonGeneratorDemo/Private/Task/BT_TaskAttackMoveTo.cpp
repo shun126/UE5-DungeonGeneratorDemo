@@ -18,26 +18,26 @@ UBT_TaskAttackMoveTo::UBT_TaskAttackMoveTo(const FObjectInitializer& objectIniti
 	bNotifyTick = true;
 
 	// accept only actors and vectors
-	AttackingTargetBlackboardKey.AddObjectFilter(this, GET_MEMBER_NAME_CHECKED(UBT_TaskAttackMoveTo, AttackingTargetBlackboardKey), AActor::StaticClass());
-	AttackingTargetBlackboardKey.AddVectorFilter(this, GET_MEMBER_NAME_CHECKED(UBT_TaskAttackMoveTo, AttackingTargetBlackboardKey));
+	BlackboardKey.AddObjectFilter(this, GET_MEMBER_NAME_CHECKED(UBT_TaskAttackMoveTo, BlackboardKey), AActor::StaticClass());
+	BlackboardKey.AddVectorFilter(this, GET_MEMBER_NAME_CHECKED(UBT_TaskAttackMoveTo, BlackboardKey));
 }
 
 void UBT_TaskAttackMoveTo::InitializeFromAsset(UBehaviorTree& Asset)
 {
 	Super::InitializeFromAsset(Asset);
 
-	if (UBlackboardData* blackboardAsset = GetBlackboardAsset())
-	{
-		AttackingTargetBlackboardKey.ResolveSelectedKey(*blackboardAsset);
-	}
-
 	mAccept = OnceAwayFromOpponent == false;
+
+	if (AcceptableRadius > DistanceToCancelMovement.Min)
+		AcceptableRadius = DistanceToCancelMovement.Min;
 }
 
 EBTNodeResult::Type UBT_TaskAttackMoveTo::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
 	if (Reached(OwnerComp) == true)
+	{
 		return EBTNodeResult::Type::Succeeded;
+	}
 
 	return Super::ExecuteTask(OwnerComp, NodeMemory);
 }
@@ -56,7 +56,9 @@ void UBT_TaskAttackMoveTo::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* No
 	Super::TickTask(OwnerComp, NodeMemory, DeltaSeconds);
 
 	if (Reached(OwnerComp))
+	{
 		FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
+	}
 }
 
 bool UBT_TaskAttackMoveTo::Reached(UBehaviorTreeComponent& OwnerComp)
@@ -83,10 +85,10 @@ bool UBT_TaskAttackMoveTo::Reached(UBehaviorTreeComponent& OwnerComp)
 		return true;
 
 	// 攻撃対象がアクターの場合
-	if (AttackingTargetBlackboardKey.SelectedKeyType == UBlackboardKeyType_Object::StaticClass())
+	if (BlackboardKey.SelectedKeyType == UBlackboardKeyType_Object::StaticClass())
 	{
 		const AActor* targetActor = Cast<AActor>(
-			myBlackboard->GetValue<UBlackboardKeyType_Object>(AttackingTargetBlackboardKey.GetSelectedKeyID()));
+			myBlackboard->GetValue<UBlackboardKeyType_Object>(BlackboardKey.GetSelectedKeyID()));
 		if (targetActor)
 		{
 			// 攻撃対象のコリジョンを間合いとして取得
@@ -97,10 +99,10 @@ bool UBT_TaskAttackMoveTo::Reached(UBehaviorTreeComponent& OwnerComp)
 		}
 	}
 	// 攻撃対象が位置の場合
-	else if (AttackingTargetBlackboardKey.SelectedKeyType == UBlackboardKeyType_Vector::StaticClass())
+	else if (BlackboardKey.SelectedKeyType == UBlackboardKeyType_Vector::StaticClass())
 	{
 		const FVector& attackingTargetLocation =
-			myBlackboard->GetValue<UBlackboardKeyType_Vector>(AttackingTargetBlackboardKey.GetSelectedKeyID());
+			myBlackboard->GetValue<UBlackboardKeyType_Vector>(BlackboardKey.GetSelectedKeyID());
 		if (CompletionCheck(ownerPawnLocation, attackingTargetLocation, distanceBetweenOpponents) == true)
 			return true;
 	}
