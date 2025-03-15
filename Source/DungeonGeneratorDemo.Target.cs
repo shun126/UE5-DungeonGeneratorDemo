@@ -8,8 +8,8 @@ public class DungeonGeneratorDemoTarget : TargetRules
 	public DungeonGeneratorDemoTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
-		DefaultBuildSettings = BuildSettingsVersion.V2;
+		DefaultBuildSettings = BuildSettingsVersion.Latest;
 
-		ExtraModuleNames.AddRange( new string[] { "DungeonGeneratorDemo" } );
+		ExtraModuleNames.Add("DungeonGeneratorDemo");
 	}
 }
