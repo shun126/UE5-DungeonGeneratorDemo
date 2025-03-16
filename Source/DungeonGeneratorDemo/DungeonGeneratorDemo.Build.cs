@@ -11,7 +11,7 @@ public class DungeonGeneratorDemo : ModuleRules
 		PublicDependencyModuleNames.AddRange(new string[]
 		{
 			"Core", "CoreUObject", "Engine", "InputCore",
-			"NetCore" // for push model
+			//"NetCore" // for push model
         });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {
