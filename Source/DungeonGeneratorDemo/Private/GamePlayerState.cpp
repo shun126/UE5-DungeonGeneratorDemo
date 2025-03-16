@@ -12,7 +12,7 @@ void AGamePlayerState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
-#if ENABLE_PUSH_MODEL
+#if defined(ENABLE_PUSH_MODEL)
 	// PushModel型Replicationが有効ならばそれを使い、無効ならばいつも通りのReplicationを行う
 	FDoRepLifetimeParams params;
 	params.bIsPushBased = true;
