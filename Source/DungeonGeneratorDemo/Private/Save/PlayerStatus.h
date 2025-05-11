@@ -185,9 +185,9 @@ public:
 	uint8 GetWeaponLevel() const;
 
 	/*!
-	称号の文字列テーブルキーを取得します
+	称号を取得します
 	*/
-	FString GetHeroTitleStringTableKey() const noexcept;
+	FText GetHeroTitle() const noexcept;
 
 	/**
 	所持金を増減させます

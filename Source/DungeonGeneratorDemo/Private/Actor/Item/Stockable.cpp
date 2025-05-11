@@ -100,10 +100,10 @@ FVector AStockable::GetImpulseAtDrop() const
 	return FVector(std::sin(theta) * length, std::cos(theta) * length, 0.f);
 }
 
-FString AStockable::GetStringTableKey_Implementation() const
+FText AStockable::GetLabel_Implementation() const
 {
-	DUNGEON_GENERATOR_DEMO_ERROR(TEXT("Cannot obtain StringTable name and key for actor (%s)"), *GetName());
-	return TEXT("");
+	//DUNGEON_GENERATOR_DEMO_ERROR(TEXT("Cannot obtain StringTable name and key for actor (%s)"), *GetName());
+	return FText();
 }
 
 UStaticMeshComponent* AStockable::GetMesh()
@@ -117,24 +117,16 @@ void AStockable::BeginPlay()
 	Super::BeginPlay();
 
 	// ラベル名を設定します
-	if (IsValid(StringTable))
+	if (auto* balloonWidget = GetValid(Cast<UBalloonWidgetBase>(Widget->GetUserWidgetObject())))
 	{
-		if (auto* balloonWidget = GetValid(Cast<UBalloonWidgetBase>(Widget->GetUserWidgetObject())))
-		{
-			const auto labelText = FText::FromStringTable(
-				StringTable->GetStringTableId(),
-				GetStringTableKey(),
-				EStringTableLoadingPolicy::FindOrFullyLoad
-			);
-			balloonWidget->SetLabel(labelText);
-		}
-		else
-		{
+		balloonWidget->SetLabel(GetLabel());
+	}
+	else
+	{
 #if WITH_EDITOR
-			const FString name = GetName();
-			DUNGEON_GENERATOR_DEMO_ERROR(TEXT("アクター(%s)のユーザーウィジットはUBalloonWidgetBaseの派生クラスではありません"), *name);
+		const FString name = GetName();
+		DUNGEON_GENERATOR_DEMO_ERROR(TEXT("アクター(%s)のユーザーウィジットはUBalloonWidgetBaseの派生クラスではありません"), *name);
 #endif
-		}
 	}
 
 	// 弾け出す

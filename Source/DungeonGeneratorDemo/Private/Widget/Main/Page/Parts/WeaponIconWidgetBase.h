@@ -102,9 +102,6 @@ public:
 	bool CanDrop() const;
 
 protected:
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<UStringTable> StringTable;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	EWeaponDataId WeaponDataId = EWeaponDataId::Invalid;
 };

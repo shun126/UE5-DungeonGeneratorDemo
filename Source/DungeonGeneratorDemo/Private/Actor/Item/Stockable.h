@@ -10,7 +10,6 @@
 
 // 前方宣言
 class UStaticMeshComponent;
-class UStringTable;
 class UWidgetComponent;
 
 /**
@@ -76,8 +75,8 @@ public:
 	\return		登録したストリングテーブルのID
 	*/
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	FString GetStringTableKey() const;
-	virtual FString GetStringTableKey_Implementation() const;
+	FText GetLabel() const;
+	virtual FText GetLabel_Implementation() const;
 
 	// AActor overrides
 	virtual void BeginPlay() override;
@@ -108,10 +107,6 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<UWidgetComponent> Widget;
-
-	// 文字列テーブル
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<UStringTable> StringTable;
 
 	UPROPERTY(EditAnywhere)
 	float TimeUntilExpiration = 30.f;

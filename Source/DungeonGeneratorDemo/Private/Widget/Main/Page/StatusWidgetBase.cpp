@@ -13,8 +13,12 @@
 
 FText UStatusWidgetBase::GetHeroTitle() const noexcept
 {
-	static FText dummy;
-	return dummy;
+	if (auto playerState = GetOwningPlayerState<AGamePlayerState>())
+	{
+		return playerState->GetPlayerStatus().GetHeroTitle();
+	}
+
+	return FText();
 }
 
 FText UStatusWidgetBase::GetEquippedWeaponName() const noexcept
@@ -32,8 +36,7 @@ FText UStatusWidgetBase::GetEquippedWeaponName() const noexcept
 		}
 	}
 
-	static FText dummy;
-	return dummy;
+	return FText();
 }
 
 int32 UStatusWidgetBase::GetStrength() const noexcept

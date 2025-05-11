@@ -4,6 +4,7 @@ https://historia.co.jp/archives/13665/
 */
 
 #include "DataAsset/ItemDataAsset.h"
+#include <Internationalization/StringTable.h>
 
 #if WITH_EDITOR
 #include <Misc/FileHelper.h>
@@ -13,14 +14,37 @@ https://historia.co.jp/archives/13665/
 //! 無効なアイテムデータ
 FItemData UItemDataAsset::mInvalidItemData;
 
-FString FItemData::Key() const
+FText FItemData::GetName() const
 {
-	return Name + TEXT("_Name");
+	if (mOwnerAsset && mOwnerAsset->GetStringTable())
+	{
+		return FText::FromStringTable(
+			mOwnerAsset->GetStringTable()->GetStringTableId(),
+			Name + TEXT("_Name"),
+			EStringTableLoadingPolicy::FindOrFullyLoad
+		);
+	}
+
+	return FText();
 }
 
-FString FItemData::Description() const
+FText FItemData::GetDescription() const
 {
-	return Name + TEXT("_Description");
+	if (mOwnerAsset && mOwnerAsset->GetStringTable())
+	{
+		return FText::FromStringTable(
+			mOwnerAsset->GetStringTable()->GetStringTableId(),
+			Name + TEXT("_Description"),
+			EStringTableLoadingPolicy::FindOrFullyLoad
+		);
+	}
+
+	return FText();
+}
+
+const UStringTable* UItemDataAsset::GetStringTable() const
+{
+	return StringTable;
 }
 
 void UItemDataAsset::Build()
@@ -189,8 +213,10 @@ const FItemData& UItemDataAsset::Get(const EItemDataId id) const
 {
 	if (static_cast<size_t>(id) >= static_cast<size_t>(EItemDataId::Invalid))
 		return mInvalidItemData;
-	else
-		return Data[static_cast<size_t>(id)];
+
+	const auto* data = &Data[static_cast<size_t>(id)];
+	const_cast<FItemData*>(data)->mOwnerAsset = this;
+	return *data;
 }
 
 const FItemData& UItemDataAsset::Find(const FString& name) const
@@ -198,8 +224,10 @@ const FItemData& UItemDataAsset::Find(const FString& name) const
 	const EItemDataId* id = Map.Find(name);
 	if (id == nullptr)
 		return mInvalidItemData;
-	else
-		return Data[static_cast<size_t>(*id)];
+
+	const auto* data = &Data[static_cast<size_t>(*id)];
+	const_cast<FItemData*>(data)->mOwnerAsset = this;
+	return *data;
 }
 
 const FItemData& UItemDataAsset::Invalid()

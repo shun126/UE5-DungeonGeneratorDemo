@@ -7,8 +7,8 @@
 */
 
 #include "PlayerStatus.h"
+#include "../GameInstanceBase.h"
 #include <array>
-//#include "../LegacyGameSingletonBase.h"
 
 namespace
 {
@@ -286,9 +286,15 @@ uint8 FPlayerStatus::GetWeaponLevel() const
 	return WeaponLevel;
 }
 
-FString FPlayerStatus::GetHeroTitleStringTableKey() const noexcept
+FText FPlayerStatus::GetHeroTitle() const noexcept
 {
-	return FString(TEXT("LEVEL_") + FString::FromInt(GetWeaponLevel()));
+	if (const auto* instance = UGameInstanceBase::Instance())
+	{
+		const auto& levelExperience = instance->GetLevelExperienceAsset();
+		return levelExperience.Get(GetWeaponLevel()).GetTitle();
+	}
+
+	return FText();
 }
 
 void FPlayerStatus::AddGold(const int32 amount)

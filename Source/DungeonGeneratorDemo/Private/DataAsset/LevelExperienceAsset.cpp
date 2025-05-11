@@ -4,6 +4,7 @@
 */
 
 #include "DataAsset/LevelExperienceAsset.h"
+#include <Internationalization/StringTable.h>
 
 #if WITH_EDITOR
 #include <Algo/Sort.h>
@@ -11,9 +12,23 @@
 #include <Misc/MessageDialog.h>
 #endif
 
-FString FLevelExperienceData::Title() const
+FText FLevelExperienceData::GetTitle() const
 {
-	return Name + TEXT("_Title");
+	if (mOwnerAsset && mOwnerAsset->GetStringTable())
+	{
+		return FText::FromStringTable(
+			mOwnerAsset->GetStringTable()->GetStringTableId(),
+			Name + TEXT("_Name"),
+			EStringTableLoadingPolicy::FindOrFullyLoad
+		);
+	}
+
+	return FText();
+}
+
+const UStringTable* ULevelExperienceAsset::GetStringTable() const
+{
+	return StringTable;
 }
 
 void ULevelExperienceAsset::Build()
@@ -121,5 +136,7 @@ const FLevelExperienceData& ULevelExperienceAsset::Get(const int32 index) const
 		return dummy;
 	}
 
-	return Data[index];
+	const auto* data = &Data[index];
+	const_cast<FLevelExperienceData*>(data)->mOwnerAsset = this;
+	return *data;
 }

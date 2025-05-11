@@ -49,8 +49,4 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable)
 	TArray<FInventoryWeapon> GetInventory() const;
-
-protected:
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<UStringTable> StringTable;
 };

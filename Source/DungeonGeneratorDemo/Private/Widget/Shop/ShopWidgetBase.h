@@ -78,9 +78,6 @@ public:
 	void ReturnToPlayGameWidget();
 
 protected:
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<UStringTable> StringTable;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	EShopWidgetMode Mode = EShopWidgetMode::Buy;
 };

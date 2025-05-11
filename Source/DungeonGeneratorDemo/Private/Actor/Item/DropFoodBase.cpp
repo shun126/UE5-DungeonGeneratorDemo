@@ -13,15 +13,15 @@ ADropFoodBase::ADropFoodBase(const FObjectInitializer& ObjectInitializer)
 {
 }
 
-FString ADropFoodBase::GetStringTableKey_Implementation() const
+FText ADropFoodBase::GetLabel_Implementation() const
 {
 	if (ItemDataId != EItemDataId::Invalid)
 	{
 		if (const auto gameInstance = UGameInstanceBase::Instance())
-			return gameInstance->GetItemDataAsset().Get(ItemDataId).Key();
+			return gameInstance->GetItemDataAsset().Get(ItemDataId).GetName();
 	}
 
-	return TEXT("");
+	return FText();
 }
 
 void ADropFoodBase::PickUp(const APawn* finderPawn)

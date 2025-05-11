@@ -1,12 +1,10 @@
 /**
 @author		Shun Moriya
-
-
-
 https://historia.co.jp/archives/13665/
 */
 
 #include "DataAsset/WeaponDataAsset.h"
+#include <Internationalization/StringTable.h>
 
 #if WITH_EDITOR
 #include <Misc/FileHelper.h>
@@ -16,14 +14,37 @@ https://historia.co.jp/archives/13665/
 //! 無効な武器データ
 FWeaponData UWeaponDataAsset::mInvalidWeaponData;
 
-FString FWeaponData::Key() const
+FText FWeaponData::GetName() const
 {
-	return Name + TEXT("_Name");
+	if (mOwnerAsset && mOwnerAsset->GetStringTable())
+	{
+		return FText::FromStringTable(
+			mOwnerAsset->GetStringTable()->GetStringTableId(),
+			Name + TEXT("_Name"),
+			EStringTableLoadingPolicy::FindOrFullyLoad
+		);
+	}
+
+	return FText();
 }
 
-FString FWeaponData::Description() const
+FText FWeaponData::GetDescription() const
 {
-	return Name + TEXT("_Description");
+	if (mOwnerAsset && mOwnerAsset->GetStringTable())
+	{
+		return FText::FromStringTable(
+			mOwnerAsset->GetStringTable()->GetStringTableId(),
+			Name + TEXT("_Description"),
+			EStringTableLoadingPolicy::FindOrFullyLoad
+		);
+	}
+
+	return FText();
+}
+
+const UStringTable* UWeaponDataAsset::GetStringTable() const
+{
+	return StringTable;
 }
 
 void UWeaponDataAsset::Build()
@@ -197,8 +218,10 @@ const FWeaponData& UWeaponDataAsset::Get(const EWeaponDataId id) const
 {
 	if (static_cast<size_t>(id) >= static_cast<size_t>(EWeaponDataId::Invalid))
 		return mInvalidWeaponData;
-	else
-		return Data[static_cast<size_t>(id)];
+
+	const auto* data = &Data[static_cast<size_t>(id)];
+	const_cast<FWeaponData*>(data)->mOwnerAsset = this;
+	return *data;
 }
 
 const FWeaponData& UWeaponDataAsset::Find(const FString& name) const
@@ -206,6 +229,8 @@ const FWeaponData& UWeaponDataAsset::Find(const FString& name) const
 	const EWeaponDataId* id = Map.Find(name);
 	if (id == nullptr)
 		return mInvalidWeaponData;
-	else
-		return Data[static_cast<size_t>(*id)];
+
+	const auto* data = &Data[static_cast<size_t>(*id)];
+	const_cast<FWeaponData*>(data)->mOwnerAsset = this;
+	return *data;
 }

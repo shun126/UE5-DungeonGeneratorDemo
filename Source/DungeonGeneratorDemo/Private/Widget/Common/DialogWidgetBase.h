@@ -68,9 +68,6 @@ protected:
 	UPROPERTY(BlueprintAssignable, Category = "Event")
 	FDialogActionSignature OnDecided;
 
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<UStringTable> StringTable;
-
 	// 決定時、自動的に自身を閉じるか？
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool AutoClose = true;

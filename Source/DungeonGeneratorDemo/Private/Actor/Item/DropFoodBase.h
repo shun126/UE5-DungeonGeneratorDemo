@@ -34,7 +34,7 @@ public:
 	void PickUp(const APawn* finderPawn);
 
 	// UAvatarComponent overrides
-	virtual FString GetStringTableKey_Implementation() const override;
+	virtual FText GetLabel_Implementation() const override;
 
 	// AActor overrides
 	virtual void BeginPlay() override;

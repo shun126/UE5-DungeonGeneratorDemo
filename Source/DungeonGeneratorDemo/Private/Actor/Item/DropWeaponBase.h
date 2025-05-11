@@ -72,7 +72,7 @@ public:
 	void SetDamageCollisionEnabled(const bool enable);
 
 	// UAvatarComponent overrides
-	virtual FString GetStringTableKey_Implementation() const override;
+	virtual FText GetLabel_Implementation() const override;
 
 	// AStockable overrides
 	virtual void Equip_Implementation(const bool playerAttack) override;

@@ -74,17 +74,9 @@ FText UPlayGameWidgetBase::GetGoldValue() const noexcept
 
 FText UPlayGameWidgetBase::GetHeroTitle() const noexcept
 {
-	if (IsValid(StringTable))
+	if (auto playerState = GetOwningPlayerState<AGamePlayerState>())
 	{
-		if (auto playerState = GetOwningPlayerState<AGamePlayerState>())
-		{
-			const FString& key = playerState->GetPlayerStatus().GetHeroTitleStringTableKey();
-			return FText::FromStringTable(
-				StringTable->GetStringTableId(),
-				key,
-				EStringTableLoadingPolicy::FindOrFullyLoad
-			);
-		}
+		return playerState->GetPlayerStatus().GetHeroTitle();
 	}
 
 	return FText();

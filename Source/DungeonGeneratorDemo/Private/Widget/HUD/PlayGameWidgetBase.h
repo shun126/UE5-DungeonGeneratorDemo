@@ -87,10 +87,6 @@ public:
 	virtual void NativeDestruct() override;
 	virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
 
-protected:
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<UStringTable> StringTable;
-
 private:
 	bool mShowGunSight = false;
 };

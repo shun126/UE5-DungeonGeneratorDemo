@@ -68,8 +68,4 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable)
 	void Use(const EItemDataId itemDataId) const;
-
-protected:
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<UStringTable> StringTable;
 };

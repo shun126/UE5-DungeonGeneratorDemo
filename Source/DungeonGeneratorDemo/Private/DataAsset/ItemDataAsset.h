@@ -10,6 +10,9 @@ https://historia.co.jp/archives/13665/
 #include <Engine/DataTable.h>
 #include "ItemDataAsset.generated.h"
 
+class UItemDataAsset;
+class UStringTable;
+
 /**
 データの登録に使うデータテーブル用構造体
 */
@@ -71,11 +74,15 @@ struct FItemData
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TSubclassOf<AActor> ActorClass;
 
-	//! キー
-	FString Key() const;
+	//! 名称
+	FText GetName() const;
 
 	//! 説明
-	FString Description() const;
+	FText GetDescription() const;
+
+private:
+	const UItemDataAsset* mOwnerAsset = nullptr;
+	friend class UItemDataAsset;
 };
 
 /**
@@ -95,6 +102,8 @@ public:
 	デストラクタ
 	*/
 	virtual ~UItemDataAsset() override = default;
+
+	const UStringTable* GetStringTable() const;
 
 	/**
 	DataTableからDataAssetをビルドします
@@ -135,7 +144,13 @@ protected:
 	//! データテーブル
 	UPROPERTY(EditAnywhere)
 	UDataTable* DataTable;
-	
+#endif
+
+	// 文字列テーブル
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UStringTable> StringTable;
+
+#if WITH_EDITORONLY_DATA
 	/*
 	データにアクセスするENUM定義を出力するファイル名
 	ソースディクトリからのパスを指定して下さい

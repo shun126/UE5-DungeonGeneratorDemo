@@ -10,6 +10,9 @@
 #include <Engine/DataTable.h>
 #include "LevelExperienceAsset.generated.h"
 
+class ULevelExperienceAsset;
+class UStringTable;
+
 /**
 データの登録に使うデータテーブル用構造体
 */
@@ -48,7 +51,11 @@ struct FLevelExperienceData
 	int32 RoomCharges = 10;
 
 	//! 称号
-	FString Title() const;
+	FText GetTitle() const;
+
+private:
+	const ULevelExperienceAsset* mOwnerAsset = nullptr;
+	friend class ULevelExperienceAsset;
 };
 
 /**
@@ -69,6 +76,8 @@ public:
 	デストラクタ
 	*/
 	virtual ~ULevelExperienceAsset() override = default;
+
+	const UStringTable* GetStringTable() const;
 
 	/**
 	DataTableからDataAssetをビルドします
@@ -93,7 +102,13 @@ protected:
 	//! データテーブル
 	UPROPERTY(EditAnywhere)
 	UDataTable* DataTable;
-	
+#endif
+
+	// 文字列テーブル
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UStringTable> StringTable;
+
+#if WITH_EDITORONLY_DATA
 	/*
 	ストリングテーブルのひな型を出力するファイル名
 	コンテンツディクトリからのパスを指定して下さい

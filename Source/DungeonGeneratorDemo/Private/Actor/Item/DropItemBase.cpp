@@ -23,15 +23,15 @@ void ADropItemBase::SetId(const EItemDataId itemDataId)
 	ItemDataId = itemDataId;
 }
 
-FString ADropItemBase::GetStringTableKey_Implementation() const
+FText ADropItemBase::GetLabel_Implementation() const
 {
 	if (ItemDataId != EItemDataId::Invalid)
 	{
 		if (const auto gameInstance = UGameInstanceBase::Instance())
-			return gameInstance->GetItemDataAsset().Get(ItemDataId).Key();
+			return gameInstance->GetItemDataAsset().Get(ItemDataId).GetName();
 	}
 
-	return TEXT("");
+	return FText();
 }
 
 void ADropItemBase::PickUp(const APawn* finderPawn)

@@ -23,15 +23,15 @@ void ADropWeaponBase::SetId(const EWeaponDataId weaponDataId)
 	WeaponDataId = weaponDataId;
 }
 
-FString ADropWeaponBase::GetStringTableKey_Implementation() const
+FText ADropWeaponBase::GetLabel_Implementation() const
 {
 	if (WeaponDataId != EWeaponDataId::Invalid)
 	{
 		if (const auto gameInstance = UGameInstanceBase::Instance())
-			return gameInstance->GetWeaponDataAsset().Get(WeaponDataId).Key();
+			return gameInstance->GetWeaponDataAsset().Get(WeaponDataId).GetName();
 	}
 
-	return TEXT("");
+	return FText();
 }
 
 void ADropWeaponBase::PickUp(const APawn* finderPawn)

@@ -12,6 +12,9 @@ https://historia.co.jp/archives/13665/
 #include <Engine/DataTable.h>
 #include "WeaponDataAsset.generated.h"
 
+class UWeaponDataAsset;
+class UStringTable;
+
 /**
 武器毎のアニメーションタイプ
 主に汎用的な戦闘を行うキャラクターのアニメーションを判定するための識別子です。
@@ -108,11 +111,15 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TSubclassOf<AActor> EquippedActorClass;
 
-	//! キー
-	FString Key() const;
+	//! 名称
+	FText GetName() const;
 
 	//! 説明
-	FString Description() const;
+	FText GetDescription() const;
+
+private:
+	const UWeaponDataAsset* mOwnerAsset = nullptr;
+	friend class UWeaponDataAsset;
 };
 
 /**
@@ -132,6 +139,8 @@ public:
 	デストラクタ
 	*/
 	virtual ~UWeaponDataAsset() override = default;
+
+	const UStringTable* GetStringTable() const;
 
 	/**
 	DataTableからDataAssetをビルドします
@@ -167,7 +176,13 @@ protected:
 	//! データテーブル
 	UPROPERTY(EditAnywhere)
 	UDataTable* DataTable;
+#endif
 
+	// 文字列テーブル
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UStringTable> StringTable;
+
+#if WITH_EDITORONLY_DATA
 	/*
 	データにアクセスするENUM定義を出力するファイル名
 	ソースディクトリからの相対パスを指定して下さい
