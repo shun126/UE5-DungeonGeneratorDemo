@@ -4,7 +4,7 @@
 
 #pragma once
 #include "DataAsset/DropDataId.h"
-#include <CoreMinimal.h>
+#include "Helper/DamageHistory.h"
 #include <GameFramework/Character.h>
 #include "EnemyBase.generated.h"
 
@@ -227,6 +227,14 @@ protected:
 
 	UPROPERTY(BlueprintAssignable, Category = "Event")
 	FEnemyBaseFireEventSignature OnEndFire;
+
+public:
+	UFUNCTION(BlueprintCallable, meta = (ExpandEnumAsExecs = "Result"))
+	void RegisterDamageHistory(EDamageHistoryRegisterResult& Result, const AActor* actor);
+
+protected:
+	UPROPERTY(EditAnywhere)
+	FDamageHistory DamageHistory;
 
 public:
 	////////////////////////////////////////////////////////////////////////////////////////////////

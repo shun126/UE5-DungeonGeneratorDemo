@@ -17,11 +17,6 @@ UItemWidgetBase::UItemWidgetBase(const FObjectInitializer& ObjectInitializer)
 {
 }
 
-FName UItemWidgetBase::GetStringTableName() const
-{
-	return StringTablePath.GetAssetPath().GetPackageName();
-}
-
 TArray<FInventoryItem> UItemWidgetBase::GetInventory() const
 {
 	TArray<FInventoryItem> result;

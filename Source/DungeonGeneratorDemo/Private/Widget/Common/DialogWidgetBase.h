@@ -29,9 +29,6 @@ public:
 	*/
 	virtual ~UDialogWidgetBase() override = default;
 
-	UFUNCTION(BlueprintCallable)
-	const FName GetStringTablePackageName() const;
-
 	/*
 	返事に文字列を追加します
 	識別子として配列番号を設定します。個別の識別子を指定したい場合はAddAnswerを使用してください。
@@ -71,8 +68,8 @@ protected:
 	UPROPERTY(BlueprintAssignable, Category = "Event")
 	FDialogActionSignature OnDecided;
 
-	UPROPERTY(EditAnywhere, meta = (AllowedClasses = "StringTable"))
-	FSoftObjectPath StringTablePath;
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UStringTable> StringTable;
 
 	// 決定時、自動的に自身を閉じるか？
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

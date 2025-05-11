@@ -10,6 +10,7 @@ https://historia.co.jp/archives/3990/
 #include "Widget/HUD/BalloonWidgetBase.h"
 #include <Components/StaticMeshComponent.h>
 #include <Components/WidgetComponent.h>
+#include <Internationalization/StringTable.h>
 #include <cmath>
 
 #include "Actor/PlayerBase.h"
@@ -166,5 +167,11 @@ void AStockable::Tick(float DeltaSeconds)
 	if (auto* balloonWidget = GetValid(Cast<UBalloonWidgetBase>(Widget->GetUserWidgetObject())))
 	{
 		balloonWidget->Update(this);
+	}
+
+	TimeUntilExpiration -= DeltaSeconds;
+	if (TimeUntilExpiration <= 0.f)
+	{
+		Destroy();
 	}
 }

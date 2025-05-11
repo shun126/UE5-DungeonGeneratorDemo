@@ -22,23 +22,6 @@ UWeaponIconWidgetBase::UWeaponIconWidgetBase(const FObjectInitializer& ObjectIni
 {
 }
 
-void UWeaponIconWidgetBase::GetStringTableNameAndKey(FName& name, FString& key) const
-{
-	name = StringTablePath.GetAssetPath().GetPackageName();
-
-#if 0
-	if (WeaponDataId != EWeaponDataId::Invalid)
-	{
-		ULegacyGameSingletonBase* gameInstance = ULegacyGameSingletonBase::Instance();
-		if (IsValid(gameInstance))
-		{
-			const FWeaponData& weaponData = gameInstance->GetWeaponDataAsset().Get(WeaponDataId);
-			key = weaponData.Key;
-		}
-	}
-#endif
-}
-
 FText UWeaponIconWidgetBase::GetLabel() const
 {
 	const auto* instance = Cast<UGameInstanceBase>(GetGameInstance());

@@ -288,7 +288,7 @@ uint8 FPlayerStatus::GetWeaponLevel() const
 
 FString FPlayerStatus::GetHeroTitleStringTableKey() const noexcept
 {
-	return FString(TEXT("SWORD_LEVEL_") + FString::FromInt(GetWeaponLevel()));
+	return FString(TEXT("LEVEL_") + FString::FromInt(GetWeaponLevel()));
 }
 
 void FPlayerStatus::AddGold(const int32 amount)

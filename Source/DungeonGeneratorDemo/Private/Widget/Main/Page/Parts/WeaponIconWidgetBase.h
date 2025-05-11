@@ -30,13 +30,6 @@ public:
 	virtual ~UWeaponIconWidgetBase() override = default;
 
 	/**
-	登録したストリングテーブルのIDとを所有武器名のストリングテーブルのキー取得します
-	\return		登録したストリングテーブルのID
-	*/
-	UFUNCTION(BlueprintCallable)
-	void GetStringTableNameAndKey(FName& name, FString& key) const;
-
-	/**
 	生成するアクターのクラス
 	*/
 	UFUNCTION(BlueprintCallable)
@@ -109,8 +102,8 @@ public:
 	bool CanDrop() const;
 
 protected:
-	UPROPERTY(EditAnywhere, meta = (AllowedClasses = "StringTable"))
-	FSoftObjectPath StringTablePath;
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UStringTable> StringTable;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	EWeaponDataId WeaponDataId = EWeaponDataId::Invalid;

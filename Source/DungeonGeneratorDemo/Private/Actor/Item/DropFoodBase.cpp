@@ -8,10 +8,6 @@
 #include "Helper/Log.h"
 #include "GameInstanceBase.h"
 
-#include "Internationalization/StringTableCore.h"
-#include "Internationalization/StringTableRegistry.h"
-#include "Internationalization/StringTable.h"
-
 ADropFoodBase::ADropFoodBase(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {

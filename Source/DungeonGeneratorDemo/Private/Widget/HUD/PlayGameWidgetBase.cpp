@@ -1,8 +1,6 @@
 /**
 @author		Shun Moriya
 
-
-
 ゲームプレイ中のメインHUDベースクラス
 
 参考
@@ -11,17 +9,12 @@ https://docs.unrealengine.com/4.27/ja/InteractiveExperiences/UMG/QuickStart/
 
 #include "PlayGameWidgetBase.h"
 #include "Actor/GamePlayerState.h"
-//#include "Actor/Player/PlayerAvatar.h"
+#include <Internationalization/StringTable.h>
 #include <Kismet/KismetStringTableLibrary.h>
 
 UPlayGameWidgetBase::UPlayGameWidgetBase(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-}
-
-FName UPlayGameWidgetBase::GetStringTableName() const
-{
-	return StringTablePath.GetAssetPath().GetPackageName();
 }
 
 void UPlayGameWidgetBase::BeginDestroy()
@@ -81,11 +74,17 @@ FText UPlayGameWidgetBase::GetGoldValue() const noexcept
 
 FText UPlayGameWidgetBase::GetHeroTitle() const noexcept
 {
-	if (auto playerState = GetOwningPlayerState<AGamePlayerState>())
+	if (IsValid(StringTable))
 	{
-		const FName& name = GetStringTableName();
-		const FString& key = playerState->GetPlayerStatus().GetHeroTitleStringTableKey();
-		return FText::FromStringTable(name, key, EStringTableLoadingPolicy::FindOrFullyLoad);
+		if (auto playerState = GetOwningPlayerState<AGamePlayerState>())
+		{
+			const FString& key = playerState->GetPlayerStatus().GetHeroTitleStringTableKey();
+			return FText::FromStringTable(
+				StringTable->GetStringTableId(),
+				key,
+				EStringTableLoadingPolicy::FindOrFullyLoad
+			);
+		}
 	}
 
 	return FText();

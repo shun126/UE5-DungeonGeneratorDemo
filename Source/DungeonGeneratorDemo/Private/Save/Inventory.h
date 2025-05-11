@@ -1,8 +1,6 @@
 /**
 @author		Shun Moriya
 
-
-
 所持品
 */
 

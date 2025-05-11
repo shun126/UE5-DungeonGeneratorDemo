@@ -10,6 +10,7 @@
 
 // 前方宣言
 class UStaticMeshComponent;
+class UStringTable;
 class UWidgetComponent;
 
 /**
@@ -109,11 +110,11 @@ protected:
 	TObjectPtr<UWidgetComponent> Widget;
 
 	// 文字列テーブル
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowedClasses = "StringTable"))
-	FSoftObjectPath StringTablePath;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere)
 	TObjectPtr<UStringTable> StringTable;
+
+	UPROPERTY(EditAnywhere)
+	float TimeUntilExpiration = 30.f;
 
 	// スポーン時にはじけ飛ぶか？
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (ExposeOnSpawn = true))

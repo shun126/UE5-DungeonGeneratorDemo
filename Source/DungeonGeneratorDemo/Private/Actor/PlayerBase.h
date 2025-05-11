@@ -3,7 +3,7 @@
 */
 
 #pragma once
-#include <CoreMinimal.h>
+#include "Helper/DamageHistory.h"
 #include <GameFramework/Character.h>
 #include "PlayerBase.generated.h"
 
@@ -19,10 +19,24 @@ public:
 	explicit APlayerBase(const FObjectInitializer& objectInitializer);
 	virtual ~APlayerBase() override = default;
 
+public:
+	UFUNCTION(BlueprintCallable, meta = (ExpandEnumAsExecs = "Result"))
+	void RegisterDamageHistory(EDamageHistoryRegisterResult& Result, const AActor* actor);
+
+protected:
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnDied();
+
+	UPROPERTY(EditAnywhere)
+	FDamageHistory DamageHistory;
+
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 private:
 	//! êHéñÇÃä‘äu
 	float mEatIntervalTimer = 0.f;
+
+	bool mIsDead = false;
 };

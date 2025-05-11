@@ -28,13 +28,6 @@ public:
 	virtual ~UPlayGameWidgetBase() override = default;
 
 	/**
-	登録したストリングテーブルのIDを取得します
-	\return		登録したストリングテーブルのID
-	*/
-	UFUNCTION(BlueprintCallable)
-	FName GetStringTableName() const;
-
-	/**
 	食料の量を取得
 	*/
 	UFUNCTION(BlueprintCallable)
@@ -95,8 +88,8 @@ public:
 	virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
 
 protected:
-	UPROPERTY(EditAnywhere, meta = (AllowedClasses = "StringTable"))
-		FSoftObjectPath StringTablePath;
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UStringTable> StringTable;
 
 private:
 	bool mShowGunSight = false;

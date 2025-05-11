@@ -14,7 +14,8 @@
 
 FText UShopWidgetBase::Message(const FString& key) const
 {
-	return FText::FromStringTable(GetStringTablePackageName(), key);
+	return FText();
+	//return FText::FromStringTable(GetStringTablePackageName(), key);
 }
 
 /*

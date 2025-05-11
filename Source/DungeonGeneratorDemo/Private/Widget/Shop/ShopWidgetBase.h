@@ -33,9 +33,6 @@ public:
 	*/
 	virtual ~UShopWidgetBase() override = default;
 
-	UFUNCTION(BlueprintCallable)
-	const FName GetStringTablePackageName() const;
-
 	/**
 	登録したストリングテーブルのIDとを所有防具名のストリングテーブルのキー取得します
 	\return		登録したストリングテーブルのID
@@ -81,8 +78,8 @@ public:
 	void ReturnToPlayGameWidget();
 
 protected:
-	UPROPERTY(EditAnywhere, meta = (AllowedClasses = "StringTable"))
-	FSoftObjectPath StringTablePath;
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UStringTable> StringTable;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	EShopWidgetMode Mode = EShopWidgetMode::Buy;
@@ -91,11 +88,6 @@ protected:
 inline UShopWidgetBase::UShopWidgetBase(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-}
-
-inline const FName UShopWidgetBase::GetStringTablePackageName() const
-{
-	return StringTablePath.GetAssetPath().GetPackageName();
 }
 
 inline EShopWidgetMode UShopWidgetBase::GetMode() const noexcept

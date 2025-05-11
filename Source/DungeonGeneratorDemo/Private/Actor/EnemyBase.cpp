@@ -58,6 +58,7 @@ void AEnemyBase::Tick(float DeltaTime)
 	UpdateTurn(DeltaTime);
 	UpdateAim(DeltaTime);
 
+	DamageHistory.Update(DeltaTime);
 
 #if WITH_EDITOR && (UE_BUILD_DEBUG || UE_BUILD_DEVELOPMENT)
 	//if (ShowDebugInfomation)
@@ -518,6 +519,13 @@ UEnemyAnimInstance* AEnemyBase::GetEnemyAnimInstance() const
 UEnemyMovementComponent* AEnemyBase::GetEnemyMovement() const
 {
 	return Cast<UEnemyMovementComponent>(GetCharacterMovement());
+}
+
+void AEnemyBase::RegisterDamageHistory(EDamageHistoryRegisterResult& Result, const AActor* actor)
+{
+	Result = DamageHistory.Register(actor)
+		? EDamageHistoryRegisterResult::Success
+		: EDamageHistoryRegisterResult::Failure;
 }
 
 #if WITH_EDITOR

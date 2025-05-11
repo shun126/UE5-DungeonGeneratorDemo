@@ -12,11 +12,6 @@ UDialogWidgetBase::UDialogWidgetBase(const FObjectInitializer& ObjectInitializer
 {
 }
 
-const FName UDialogWidgetBase::GetStringTablePackageName() const
-{
-	return StringTablePath.GetAssetPath().GetPackageName();
-}
-
 void UDialogWidgetBase::AddAnswers(const TArray<FString>& answers)
 {
 	for (int32 i = 0; i < answers.Num(); ++i)

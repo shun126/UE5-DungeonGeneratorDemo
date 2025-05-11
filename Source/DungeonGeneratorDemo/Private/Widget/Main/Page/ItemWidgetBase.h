@@ -51,14 +51,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 	TArray<FInventoryItem> GetInventory() const;
 
-
-	/**
-	登録したストリングテーブルのIDを取得します
-	\return		登録したストリングテーブルのID
-	*/
-	UFUNCTION(BlueprintCallable)
-	FName GetStringTableName() const;
-
 	/**
 	所有アイテムの数を取得します
 	*/
@@ -78,6 +70,6 @@ public:
 	void Use(const EItemDataId itemDataId) const;
 
 protected:
-	UPROPERTY(EditAnywhere, meta = (AllowedClasses = "StringTable"))
-		FSoftObjectPath StringTablePath;
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UStringTable> StringTable;
 };

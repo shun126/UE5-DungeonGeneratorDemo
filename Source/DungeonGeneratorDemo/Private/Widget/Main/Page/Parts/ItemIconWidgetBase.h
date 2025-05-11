@@ -85,8 +85,8 @@ public:
 	bool CanDrop() const;
 
 protected:
-	UPROPERTY(EditAnywhere, meta = (AllowedClasses = "StringTable"))
-	FSoftObjectPath StringTablePath;
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UStringTable> StringTable;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	EItemDataId ItemDataId = EItemDataId::Invalid;

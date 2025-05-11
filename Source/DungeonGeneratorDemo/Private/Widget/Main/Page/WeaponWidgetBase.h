@@ -51,6 +51,6 @@ public:
 	TArray<FInventoryWeapon> GetInventory() const;
 
 protected:
-	UPROPERTY(EditAnywhere, meta = (AllowedClasses = "StringTable"))
-	FSoftObjectPath StringTablePath;
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UStringTable> StringTable;
 };
