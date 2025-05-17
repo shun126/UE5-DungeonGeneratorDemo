@@ -4,6 +4,7 @@ https://historia.co.jp/archives/13665/
 */
 
 #include "DataAsset/WeaponDataAsset.h"
+#include "DataAssetHelper.h"
 #include <Internationalization/StringTable.h>
 
 #if WITH_EDITOR
@@ -191,17 +192,33 @@ bool UWeaponDataAsset::GenerateStringTableCsv(const TArray<FName>& names) const
 
 	FString pathPart, filenamePart, extensionPart;
 	FPaths::Split(OutputStringTableCsvPath, pathPart, filenamePart, extensionPart);
+	const FString outputPath = FPaths::ProjectContentDir() + OutputStringTableCsvPath;
 
 	TArray<FString> output;
-	output.Add(TEXT("Key,SourceString"));
 
-	for (int32 i = 0; i < names.Num(); ++i)
+	if (FFileHelper::LoadFileToStringArray(output, *outputPath))
 	{
-		output.Add(TEXT("\"") + names[i].ToString() + TEXT("_Name\",\"\""));
-		output.Add(TEXT("\"") + names[i].ToString() + TEXT("_Description\",\"\""));
+		for (int32 i = 0; i < names.Num(); ++i)
+		{
+			const FString& name = names[i].ToString();
+			if (DungeonGenerator::DataAsset::ContainsInStringArray(output, name) == false)
+			{
+				output.Add(TEXT("\"") + name + TEXT("_Name\", \"\""));
+				output.Add(TEXT("\"") + name + TEXT("_Description\", \"\""));
+			}
+		}
+	}
+	else
+	{
+		output.Add(TEXT("Key,SourceString"));
+
+		for (int32 i = 0; i < names.Num(); ++i)
+		{
+			output.Add(TEXT("\"") + names[i].ToString() + TEXT("_Name\",\"\""));
+			output.Add(TEXT("\"") + names[i].ToString() + TEXT("_Description\",\"\""));
+		}
 	}
 
-	const FString outputPath = FPaths::ProjectContentDir() + OutputStringTableCsvPath;
 	if (!FFileHelper::SaveStringArrayToFile(output, *outputPath, FFileHelper::EEncodingOptions::ForceUTF8))
 	{
 		const FText title = FText::FromString(TEXT("WeaponDataAsset Error"));

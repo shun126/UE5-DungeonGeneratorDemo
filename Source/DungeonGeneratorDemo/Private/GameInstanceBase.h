@@ -68,7 +68,7 @@ public:
 	指定されたクラスがあればそこから新しいものを作成します
 	*/
 	UFUNCTION(BlueprintCallable)
-	UUserWidget* ChangeCurrentWidget(TSubclassOf<UUserWidget> newWidgetClass);
+	UUserWidget* ChangeCurrentWidget(TSubclassOf<UUserWidget> newWidgetClass, const bool addViewport = true);
 
 	/**
 	現在のメニューウィジェットを取り除きます

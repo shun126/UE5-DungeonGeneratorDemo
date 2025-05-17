@@ -69,14 +69,14 @@ const ULevelExperienceAsset& UGameInstanceBase::GetLevelExperienceAsset() const
 	return *LevelExperienceAsset;
 }
 
-UUserWidget* UGameInstanceBase::ChangeCurrentWidget(TSubclassOf<UUserWidget> newWidgetClass)
+UUserWidget* UGameInstanceBase::ChangeCurrentWidget(TSubclassOf<UUserWidget> newWidgetClass, const bool addViewport)
 {
 	CloseCurrentWidget();
 
 	if (newWidgetClass != nullptr)
 	{
 		CurrentWidget = CreateWidget<UUserWidget>(GetWorld(), newWidgetClass);
-		if (CurrentWidget != nullptr)
+		if (CurrentWidget != nullptr && addViewport)
 		{
 			CurrentWidget->AddToViewport();
 		}
