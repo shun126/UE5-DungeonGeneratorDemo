@@ -78,6 +78,11 @@ void ADungeonCrawlerBase::BeginPlay()
 
 	// アクターの回転を記録
 	mRotation = GetActorRotation();
+
+	if (UNavigationSystemV1* navSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld()))
+	{
+		navSys->Build();
+	}
 }
 
 void ADungeonCrawlerBase::Tick(float deltaSeconds)
@@ -95,234 +100,254 @@ void ADungeonCrawlerBase::Tick(float deltaSeconds)
 	}
 }
 
-void ADungeonCrawlerBase::TickImpl(float deltaSeconds)
+void ADungeonCrawlerBase::StateInitialize()
 {
-	if (mInitializeState == InitializeState::Initialize)
+	UGameplayStatics::GetAllActorsOfClass(this, ADungeonRoomSensorBase::StaticClass(), mDungeonRoomSensorBases);
+	if (mDungeonRoomSensorBases.IsEmpty() == false)
 	{
-		UGameplayStatics::GetAllActorsOfClass(this, ADungeonRoomSensorBase::StaticClass(), mDungeonRoomSensorBases);
-		if (mDungeonRoomSensorBases.IsEmpty() == false)
-		{
-			ShuffleDungeonRoomSensorBases();
-			mInitializeState = InitializeState::WaitForNavigationGeneration;
-		}
+		ShuffleDungeonRoomSensorBases();
+		mIdleTimer = 0;
+		mInitializeState = InitializeState::WaitForNavigationGeneration;
+	}
 
-		if (bReplicates)
+	if (bReplicates)
+	{
+		TArray<AActor*> dungeonGenerateActors;
+		UGameplayStatics::GetAllActorsOfClass(this, ADungeonGenerateActor::StaticClass(), dungeonGenerateActors);
+		if (dungeonGenerateActors.IsEmpty() == false)
 		{
-			TArray<AActor*> dungeonGenerateActors;
-			UGameplayStatics::GetAllActorsOfClass(this, ADungeonGenerateActor::StaticClass(), dungeonGenerateActors);
-			if (dungeonGenerateActors.IsEmpty() == false)
-			{
-				mDungeonGenerateActor = Cast<ADungeonGenerateActor>(dungeonGenerateActors[0]);
-			}
+			mDungeonGenerateActor = Cast<ADungeonGenerateActor>(dungeonGenerateActors[0]);
 		}
 	}
-	if (mInitializeState == InitializeState::WaitForNavigationGeneration)
+}
+
+void ADungeonCrawlerBase::StateWaitForNavigationGeneration(const float deltaSeconds)
+{
+	mIdleTimer += deltaSeconds;
+	if (UNavigationSystemV1* navSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld()))
 	{
-		if (UNavigationSystemV1* navSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld()))
+		if (navSys->IsNavigationBuildInProgress() == false || mIdleTimer >= 5)
+			mInitializeState = InitializeState::Patrol;
+	}
+}
+
+void ADungeonCrawlerBase::StatePatrol(const float deltaSeconds)
+{
+	switch (mAiStatus)
+	{
+	case AiStatus::SetNextLocation:
+	{
+		auto dungeonRoomSensorBase = Cast<ADungeonRoomSensorBase>(mDungeonRoomSensorBases[mDungeonRoomSensorBaseIndex]);
+		if (IsValid(dungeonRoomSensorBase))
 		{
-			if (navSys->IsNavigationBuildInProgress() == false)
-				mInitializeState = InitializeState::Patrol;
+			FVector location;
+			FVector extent;
+			dungeonRoomSensorBase->GetActorBounds(true, location, extent);
+			location.Z -= extent.Z;
+
+			TArray<FVector> pathPoints = FindPathToLocation(location);
+			if (pathPoints.IsEmpty() == false)
+			{
+				mPathPoints = pathPoints;
+			}
+			else
+			{
+				mPathPoints.Add(location);
+			}
+			mAiStatus = AiStatus::WaitReachLocation;
 		}
 	}
-	else
-	{
-		switch (mAiStatus)
-		{
-		case AiStatus::SetNextLocation:
-		{
-			auto dungeonRoomSensorBase = Cast<ADungeonRoomSensorBase>(mDungeonRoomSensorBases[mDungeonRoomSensorBaseIndex]);
-			if (IsValid(dungeonRoomSensorBase))
-			{
-				FVector location;
-				FVector extent;
-				dungeonRoomSensorBase->GetActorBounds(true, location, extent);
-				location.Z -= extent.Z;
+	break;
 
-				TArray<FVector> pathPoints = FindPathToLocation(location);
-				if (pathPoints.IsEmpty() == false)
+	case AiStatus::WaitReachLocation:
+		if (FVector::Dist2D(GetActorLocation(), mPathPoints[0]) <= 0.75 * 100)
+		{
+			mPathPoints.RemoveAt(0);
+			if (mPathPoints.IsEmpty())
+			{
+				++mDungeonRoomSensorBaseIndex;
+				if (mDungeonRoomSensorBaseIndex >= mDungeonRoomSensorBases.Num())
 				{
-					mPathPoints = pathPoints;
+					mDungeonRoomSensorBaseIndex = 0;
+					ShuffleDungeonRoomSensorBases();
+					OnPatrolCompleted.Broadcast();
 				}
-				else
-				{
-					mPathPoints.Add(location);
-				}
-				mAiStatus = AiStatus::WaitReachLocation;
+				mIdleTimer = 0;
+				mAiStatus = AiStatus::Idle;
 			}
 		}
-		break;
+		if (mPathPoints.IsEmpty() == false)
+		{
+			static float RotationSpeed = 360.f * 2.f;
 
-		case AiStatus::WaitReachLocation:
-			if (FVector::Dist2D(GetActorLocation(), mPathPoints[0]) <= 0.75 * 100)
+
+			const FVector& currentLocation = GetActorLocation();
+			const FVector& nextLocation = mPathPoints[0];
+			double dx = nextLocation.X - currentLocation.X;
+			double dy = nextLocation.Y - currentLocation.Y;
+			double dl = std::sqrt(dx * dx + dy * dy);
+			if (dl > 0.0)
 			{
-				mPathPoints.RemoveAt(0);
-				if (mPathPoints.IsEmpty())
-				{
-					++mDungeonRoomSensorBaseIndex;
-					if (mDungeonRoomSensorBaseIndex >= mDungeonRoomSensorBases.Num())
-					{
-						mDungeonRoomSensorBaseIndex = 0;
-						ShuffleDungeonRoomSensorBases();
-						OnPatrolCompleted.Broadcast();
-					}
-					mIdleTimer = 0;
-					mAiStatus = AiStatus::Idle;
-				}
+				const double normalize = 1.0 / dl;
+				dx *= normalize;
+				dy *= normalize;
+				const double targetYaw = std::atan2(dy, dx) * 57.295779513082320876798154814105;
+				double deltaYaw = RoundDegreeWithSign(targetYaw - mRotation.Yaw);
+
+				deltaYaw *= ChaseRatio(0.1f, deltaSeconds);
+				mRotation.Yaw += deltaYaw;
 			}
-			if (mPathPoints.IsEmpty() == false)
+
+			double speed = dl / (5.0 * 100.0);
+			if (speed < 0.5)
+				speed = 0.5;
+			else if (speed > 1.)
+				speed = 1.;
+
+			// キャラクターの移動
 			{
-				static float RotationSpeed = 360.f * 2.f;
-
-
-				const FVector& currentLocation = GetActorLocation();
-				const FVector& nextLocation = mPathPoints[0];
-				double dx = nextLocation.X - currentLocation.X;
-				double dy = nextLocation.Y - currentLocation.Y;
-				double dl = std::sqrt(dx * dx + dy * dy);
-				if (dl > 0.0)
-				{
-					const double normalize = 1.0 / dl;
-					dx *= normalize;
-					dy *= normalize;
-					const double targetYaw = std::atan2(dy, dx) * 57.295779513082320876798154814105;
-					double deltaYaw = RoundDegreeWithSign(targetYaw - mRotation.Yaw);
-
-					deltaYaw *= ChaseRatio(0.1f, deltaSeconds);
-					mRotation.Yaw += deltaYaw;
-				}
-
-				double speed = dl / (5.0 * 100.0);
-				if (speed < 0.5)
-					speed = 0.5;
-				else if (speed > 1.)
-					speed = 1.;
-
-				// キャラクターの移動
-				{
-					const FVector& movement = mRotation.Vector();
-					AddMovementInput(movement, speed, true);
+				const FVector& movement = mRotation.Vector();
+				AddMovementInput(movement, speed, true);
 #if defined(_ENABLE_LOCAL_DEBUG_)
-					UKismetSystemLibrary::DrawDebugArrow(GetWorld(), currentLocation, currentLocation + movement * 100, 20, FLinearColor::Green, 0, 3.0f);
+				UKismetSystemLibrary::DrawDebugArrow(GetWorld(), currentLocation, currentLocation + movement * 100, 20, FLinearColor::Green, 0, 3.0f);
 #endif
-				}
+			}
 
-				// カメラの回転
-				if (false)
-				{
-					double deltaDegree;
-					if (mCameraBoomDirection)
-						deltaDegree = GetControlRotation().Yaw - (mRotation.Yaw + 180.);
-					else
-						deltaDegree = GetControlRotation().Yaw - mRotation.Yaw;
-					deltaDegree = RoundDegreeWithSign(deltaDegree);
+			// カメラの回転
+			if (false)
+			{
+				double deltaDegree;
+				if (mCameraBoomDirection)
+					deltaDegree = GetControlRotation().Yaw - (mRotation.Yaw + 180.);
+				else
+					deltaDegree = GetControlRotation().Yaw - mRotation.Yaw;
+				deltaDegree = RoundDegreeWithSign(deltaDegree);
 #if 0
-					deltaDegree *= ChaseRatio(0.1f, deltaSeconds);
-					AddControllerYawInput(deltaDegree * deltaSeconds);
+				deltaDegree *= ChaseRatio(0.1f, deltaSeconds);
+				AddControllerYawInput(deltaDegree * deltaSeconds);
 #else
-					static float ControlRotationSpeed = 11.25f;
-					if (deltaDegree > 1)
-					{
-						if (deltaDegree > ControlRotationSpeed * deltaSeconds)
-							deltaDegree = ControlRotationSpeed * deltaSeconds;
-					}
-					else if (deltaDegree < -1)
-					{
-						if (deltaDegree < -ControlRotationSpeed * deltaSeconds)
-							deltaDegree = -ControlRotationSpeed * deltaSeconds;
-					}
-					AddControllerYawInput(deltaDegree);
-#endif
-					mCameraBoomTimer += deltaSeconds;
-					if (mCameraBoomTimer >= 20.f)
-					{
-						mCameraBoomTimer = 0.f;
-						mCameraBoomDirection = !mCameraBoomDirection;
-					}
+				static float ControlRotationSpeed = 11.25f;
+				if (deltaDegree > 1)
+				{
+					if (deltaDegree > ControlRotationSpeed * deltaSeconds)
+						deltaDegree = ControlRotationSpeed * deltaSeconds;
 				}
+				else if (deltaDegree < -1)
+				{
+					if (deltaDegree < -ControlRotationSpeed * deltaSeconds)
+						deltaDegree = -ControlRotationSpeed * deltaSeconds;
+				}
+				AddControllerYawInput(deltaDegree);
+#endif
+				mCameraBoomTimer += deltaSeconds;
+				if (mCameraBoomTimer >= 20.f)
+				{
+					mCameraBoomTimer = 0.f;
+					mCameraBoomDirection = !mCameraBoomDirection;
+				}
+			}
 
 #if defined(_ENABLE_LOCAL_DEBUG_)
-				// 経路の表示
-				UKismetSystemLibrary::DrawDebugArrow(GetWorld(), currentLocation, mPathPoints[0], 100.0f, FLinearColor::Red, 0, 3.0f);
-				for (int32 i = 1; i < mPathPoints.Num(); ++i)
-				{
-					UKismetSystemLibrary::DrawDebugArrow(GetWorld(), mPathPoints[i - 1], mPathPoints[i], 100.0f, FLinearColor::Yellow, 0, 3.0f);
-				}
+			// 経路の表示
+			UKismetSystemLibrary::DrawDebugArrow(GetWorld(), currentLocation, mPathPoints[0], 100.0f, FLinearColor::Red, 0, 3.0f);
+			for (int32 i = 1; i < mPathPoints.Num(); ++i)
+			{
+				UKismetSystemLibrary::DrawDebugArrow(GetWorld(), mPathPoints[i - 1], mPathPoints[i], 100.0f, FLinearColor::Yellow, 0, 3.0f);
+			}
 #endif
 
-				// 何かに引っかかった時の対処
-				if (FVector::Distance(mLastActorLocation, currentLocation) < (LowestSpeed * deltaSeconds))
-				{
-					mStackElapsedTime += deltaSeconds;
-					if (mStackElapsedTime >= StoppingTime)
-					{
-						mStackElapsedTime = 0.f;
-						++mDungeonRoomSensorBaseIndex;
-						if (mDungeonRoomSensorBaseIndex >= mDungeonRoomSensorBases.Num())
-							mDungeonRoomSensorBaseIndex = 0;
-						mAiStatus = AiStatus::SetNextLocation;
-
-						OnReachFailed.Broadcast();
-					}
-				}
-				else
+			// 何かに引っかかった時の対処
+			if (FVector::Distance(mLastActorLocation, currentLocation) < (LowestSpeed * deltaSeconds))
+			{
+				mStackElapsedTime += deltaSeconds;
+				if (mStackElapsedTime >= StoppingTime)
 				{
 					mStackElapsedTime = 0.f;
+					++mDungeonRoomSensorBaseIndex;
+					if (mDungeonRoomSensorBaseIndex >= mDungeonRoomSensorBases.Num())
+						mDungeonRoomSensorBaseIndex = 0;
+					mAiStatus = AiStatus::SetNextLocation;
+
+					OnReachFailed.Broadcast();
 				}
-
-				// 現在の位置を記録
-				mLastActorLocation = currentLocation;
 			}
-
-			break;
-
-		case AiStatus::Idle:
-			mIdleTimer += deltaSeconds;
-			if (mIdleTimer > 2)
+			else
 			{
-				mAiStatus = AiStatus::SetNextLocation;
+				mStackElapsedTime = 0.f;
 			}
+
+			// 現在の位置を記録
+			mLastActorLocation = currentLocation;
 		}
+
+		break;
+
+	case AiStatus::Idle:
+		mIdleTimer += deltaSeconds;
+		if (mIdleTimer > 2)
+		{
+			mAiStatus = AiStatus::SetNextLocation;
+		}
+	}
 
 #if defined(_ENABLE_LOCAL_DEBUG_)
+	{
+		const int32 currentIndex = mDungeonRoomSensorBaseIndex % mDungeonRoomSensorBases.Num();
+		FString message;
+
+		if (IsValid(mDungeonGenerateActor))
 		{
-			const int32 currentIndex = mDungeonRoomSensorBaseIndex % mDungeonRoomSensorBases.Num();
-			FString message;
-
-			if (IsValid(mDungeonGenerateActor))
-			{
-				message = FString::Format(TEXT("Received hash value: {0}\n"), { mDungeonGenerateActor->GetGeneratedDungeonCRC32() });
-				message += FString::Format(TEXT("Self hash value: {0}\n"), { mDungeonGenerateActor->CalculateCRC32() });
-			}
-
-			for (int32 i = 0; i < mDungeonRoomSensorBases.Num(); ++i)
-			{
-				const AActor* actor = mDungeonRoomSensorBases[i];
-				if (actor)
-				{
-					if (i == currentIndex)
-						message += TEXT("=> ");
-
-					FString name;
-					actor->GetName(name);
-					const FVector& location = actor->GetActorLocation();
-					message += FString::Format(TEXT("{0}, {1}, {2}: {3}\n"), { *name, location.X, location.Y, location.Z });
-				}
-			}
-			DrawDebugString(GetWorld(), GetPawnViewLocation(), message, nullptr, FColor::White, 0, true, 1.f);
+			message = FString::Format(TEXT("Received hash value: {0}\n"), { mDungeonGenerateActor->GetGeneratedDungeonCRC32() });
+			message += FString::Format(TEXT("Self hash value: {0}\n"), { mDungeonGenerateActor->CalculateCRC32() });
 		}
+
+		for (int32 i = 0; i < mDungeonRoomSensorBases.Num(); ++i)
+		{
+			const AActor* actor = mDungeonRoomSensorBases[i];
+			if (actor)
+			{
+				if (i == currentIndex)
+					message += TEXT("=> ");
+
+				FString name;
+				actor->GetName(name);
+				const FVector& location = actor->GetActorLocation();
+				message += FString::Format(TEXT("{0}, {1}, {2}: {3}\n"), { *name, location.X, location.Y, location.Z });
+			}
+		}
+		DrawDebugString(GetWorld(), GetPawnViewLocation(), message, nullptr, FColor::White, 0, true, 1.f);
+	}
 #endif
 
 #if defined(DUNGEON_CRAWLER_BASE_ENABLE_JUMP)
-		// ジャンプ
-		mJump += deltaSeconds;
-		if (mJump >= 2.f)
-		{
-			mJump = 0.f;
-			Jump();
-		}
-#endif
-		}
+	// ジャンプ
+	mJump += deltaSeconds;
+	if (mJump >= 2.f)
+	{
+		mJump = 0.f;
+		Jump();
 	}
+#endif
+}
+
+void ADungeonCrawlerBase::TickImpl(float deltaSeconds)
+{
+	switch (mInitializeState)
+	{
+	case InitializeState::Initialize:
+		StateInitialize();
+		break;
+
+	case InitializeState::WaitForNavigationGeneration:
+		StateWaitForNavigationGeneration(deltaSeconds);
+		break;
+
+	case InitializeState::Patrol:
+	default:
+		StatePatrol(deltaSeconds);
+		break;
+	}
+}
 
 void ADungeonCrawlerBase::ShuffleDungeonRoomSensorBases()
 {

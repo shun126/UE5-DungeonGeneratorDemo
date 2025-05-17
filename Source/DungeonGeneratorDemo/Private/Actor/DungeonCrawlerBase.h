@@ -35,6 +35,9 @@ public:
 
 private:
 	void TickImpl(float deltaSeconds);
+	void StateInitialize();
+	void StateWaitForNavigationGeneration(const float deltaSeconds);
+	void StatePatrol(const float deltaSeconds);
 
 	void ShuffleDungeonRoomSensorBases();
 	TArray<FVector> FindPathToLocation(const FVector& location) const;
