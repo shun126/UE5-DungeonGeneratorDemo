@@ -1,0 +1,11 @@
+﻿Key,SourceString
+"EnergyCapacitor_Name","エネルギーキャパシター"
+"EnergyCapacitor_Description","最大HPや最大アーマーが増加"
+"BurstCore_Name","バーストコア"
+"BurstCore_Description","一定時間、全ダメージが2倍。ただしHPが徐々に減る"
+"FlagGrenade_Name","フラググレネード"
+"FlagGrenade_Description","小範囲に爆発ダメージ。敵を一掃！"
+"HealthPack_Name","ヘルスパック"
+"HealthPack_Description","HPを即時回復（小中大）"
+"RespawnChip_Name","やられた時、1回だけ復活"
+"RespawnChip_Description","リスポーンチップ"

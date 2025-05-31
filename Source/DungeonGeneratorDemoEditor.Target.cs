@@ -1,4 +1,6 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+/**
+@author		Shun Moriya
+*/
 
 using UnrealBuildTool;
 using System.Collections.Generic;
@@ -10,6 +12,12 @@ public class DungeonGeneratorDemoEditorTarget : TargetRules
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.Latest;
 
-		ExtraModuleNames.Add("DungeonGeneratorDemo");
+		ExtraModuleNames.AddRange(
+			new string[]
+			{
+                "DungeonGeneratorDemoEditor",
+				"DungeonGeneratorDemo"
+			}
+		);
 	}
 }

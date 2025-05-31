@@ -1,4 +1,6 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+/**
+@author		Shun Moriya
+*/
 
 using UnrealBuildTool;
 
@@ -17,11 +19,12 @@ public class DungeonGeneratorDemo : ModuleRules
 		PrivateDependencyModuleNames.AddRange(new string[] {
 			"AIModule", "NavigationSystem",
             "GameplayTasks",
+            "UMG",
             "DungeonGenerator"
         });
 
         // Uncomment if you are using Slate UI
-        // PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
+        //PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
 
         // Uncomment if you are using online features
         PrivateDependencyModuleNames.Add("OnlineSubsystem");
