@@ -6,6 +6,7 @@
 #include "DataAsset/LevelExperienceAsset.h"
 #include "DataAssetHelper.h"
 #include <Internationalization/StringTable.h>
+#include <UObject/ObjectSaveContext.h>
 
 #if WITH_EDITOR
 #include <Algo/Sort.h>
@@ -156,4 +157,16 @@ const FLevelExperienceData& ULevelExperienceAsset::Get(const int32 index) const
 	const auto* data = &Data[index];
 	const_cast<FLevelExperienceData*>(data)->mOwnerAsset = this;
 	return *data;
+}
+
+void ULevelExperienceAsset::PreSave(FObjectPreSaveContext SaveContext)
+{
+	Super::PreSave(SaveContext);
+
+#if WITH_EDITOR
+	if (IsRunningCookCommandlet())
+	{
+		Build();
+	}
+#endif
 }

@@ -103,6 +103,12 @@ public:
 	UFUNCTION()
 	TSubclassOf<AStockable> Draw(const EDropDataId id) const;
 
+	/**
+	 * セーブ前に通知される関数
+	 * Cook前のBuildに使用しています
+	 */
+	virtual void PreSave(FObjectPreSaveContext SaveContext) override;
+
 private:
 	/**
 	enumヘッダーを出力します

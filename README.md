@@ -1,4 +1,5 @@
 <div align="center">
+<img src="Document/DungeonGenerator-Logo.png" />
 <h1>Dungeon generator plugin for Unreal Engine 5</h1>
 <p>
 <a href="https://github.com/shun126/UE5-DungeonGeneratorDemo/issues">Issues</a>,
@@ -19,7 +20,7 @@ Please also take a look at the [Fab](https://fab.com/s/f5587c55bad0) version.
 
 * Trailer video: [YouTube](https://youtu.be/1igd4pls5x8)
 * Tutorial videos: [YouTube](https://www.youtube.com/playlist?list=PLlMDkSa8bQnK4PDIfkXYorQIucn47ifKO)
-* You can download the [free trial version here](https://github.com/shun126/DungeonGenerator).
+* You can download [the free trial version here](https://github.com/shun126/DungeonGenerator).
 
 Revolutionize your dungeon creation process with our new Unreal Engine plugin! Enjoy freedom and customize your own rulesets to offer players unique and engaging dungeon exploration experiences. Say goodbye to the hassle of manual dungeon building and welcome the new age of dungeon exploration!
 
@@ -33,7 +34,7 @@ Revolutionize your dungeon creation process with our new Unreal Engine plugin! E
 - [See also](#-see-also)
 - [Author](#-authors)
 
-# 🤔 Why Dungeon Generator?
+# 👾 Why Dungeon Generator?
 
 One day I wanted to create a video game, but I didn't have the level design know-how. So I decided to create a procedural dungeon generator.
 The dungeon generator was based on Vazgriz's algorithm. You can read more about [Vazgriz's algorithm here](https://vazgriz.com/119/procedurally-generated-dungeons/).
@@ -61,7 +62,8 @@ The dungeon generator was based on Vazgriz's algorithm. You can read more about 
 * [Visual Studio 2022](https://visualstudio.microsoft.com/)
 
 # 📜 License
-* MIT
+This demo is licensed under the MIT license; check the DungeonGenerator plugin, which is licensed under a different license.
+The Fab version is licensed under the Epic Standard License, and the free trial version is licensed under GPL version 3.
 
 # 👀 See also
 * [Issues](https://github.com/shun126/UE5-DungeonGeneratorDemo/issues)

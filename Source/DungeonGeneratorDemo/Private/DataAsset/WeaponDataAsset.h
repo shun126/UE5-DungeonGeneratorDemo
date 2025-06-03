@@ -171,6 +171,14 @@ private:
 	 */
 	bool GenerateStringTableCsv(const TArray<FName>& names) const;
 
+public:
+	/**
+	 * セーブ前に通知される関数
+	 * Cook前のBuildに使用しています
+	 */
+	virtual void PreSave(FObjectPreSaveContext SaveContext) override;
+
+
 protected:
 #if WITH_EDITORONLY_DATA
 	//! データテーブル

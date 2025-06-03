@@ -6,6 +6,7 @@ https://historia.co.jp/archives/13665/
 #include "DataAsset/WeaponDataAsset.h"
 #include "DataAssetHelper.h"
 #include <Internationalization/StringTable.h>
+#include <UObject/ObjectSaveContext.h>
 
 #if WITH_EDITOR
 #include <Misc/FileHelper.h>
@@ -250,4 +251,16 @@ const FWeaponData& UWeaponDataAsset::Find(const FString& name) const
 	const auto* data = &Data[static_cast<size_t>(*id)];
 	const_cast<FWeaponData*>(data)->mOwnerAsset = this;
 	return *data;
+}
+
+void UWeaponDataAsset::PreSave(FObjectPreSaveContext SaveContext)
+{
+	Super::PreSave(SaveContext);
+
+#if WITH_EDITOR
+	if (IsRunningCookCommandlet())
+	{
+		Build();
+	}
+#endif
 }

@@ -8,6 +8,7 @@ https://historia.co.jp/archives/13665/
 
 #include "DataAsset/DropDataAsset.h"
 #include <Math/RandomStream.h>
+#include <UObject/ObjectSaveContext.h>
 
 #if WITH_EDITOR
 #include <Misc/FileHelper.h>
@@ -175,4 +176,16 @@ TSubclassOf<AStockable> UDropDataAsset::Draw(const EDropDataId id) const
 	}
 
 	return TSubclassOf<AStockable>();
+}
+
+void UDropDataAsset::PreSave(FObjectPreSaveContext SaveContext)
+{
+	Super::PreSave(SaveContext);
+
+#if WITH_EDITOR
+	if (IsRunningCookCommandlet())
+	{
+		Build();
+	}
+#endif
 }
