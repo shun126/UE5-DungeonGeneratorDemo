@@ -1,19 +1,15 @@
 /**
-在庫可能なアイテムのクラス ソースファイル
-
-https://historia.co.jp/archives/3990/
-*/
+ * Does it burst at spawn?
+ * 在庫可能なアイテムのクラス ソースファイル
+ * https://historia.co.jp/archives/3990/
+ */
 
 #include "Stockable.h"
 #include "Helper/Log.h"
-#include "Helper/Math.h"
 #include "Widget/HUD/BalloonWidgetBase.h"
 #include <Components/StaticMeshComponent.h>
 #include <Components/WidgetComponent.h>
-#include <Internationalization/StringTable.h>
 #include <cmath>
-
-#include "Actor/PlayerBase.h"
 
 AStockable::AStockable(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

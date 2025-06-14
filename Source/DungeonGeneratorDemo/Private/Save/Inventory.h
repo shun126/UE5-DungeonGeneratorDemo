@@ -1,8 +1,6 @@
 /**
-@author		Shun Moriya
-
-所持品
-*/
+ * @author		Shun Moriya
+ */
 
 #pragma once
 #include "DataAsset/ItemDataId.h"
@@ -10,29 +8,37 @@
 #include "Inventory.generated.h"
 
 /**
-所持情報のペア
-*/
+ * Pairs of number of possessions and proficiency
+ * 所有品の個数と熟練度のペア
+ */
 USTRUCT(BlueprintType)
 struct FInventoryPair
 {
 	GENERATED_BODY()
 
-public:
+	/**
+	 * Number of
+	 * 個数
+	 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	uint8 Count = 10;
 
+	/**
+	 * Proficiency
+	 * 熟練度
+	 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int32 Skill = 0;
 
 	static constexpr uint8 MaxCount = 255;
 	static constexpr int32 MaxSkill = 1000;
 
-public:
 	void Reset(const bool reset);
 };
 
-/*
- * ダンジョン固有の所持品
+/**
+ * Dungeon-specific possessions
+ * ダンジョン固有の所有品
  */
 USTRUCT(BlueprintType)
 struct FDungeonInventory
@@ -40,34 +46,51 @@ struct FDungeonInventory
 	GENERATED_BODY()
 
 public:
-	// 汎用鍵
+	/**
+	 * general-purpose key
+	 * 汎用鍵
+	 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	uint8 Key = 0;
 
-	// ユニーク鍵（ボス鍵）
+	/**
+	 * Unique key (boss key)
+	 * ユニーク鍵（ボス鍵）
+	 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	bool UniqueKey = false;
 };
 
 /**
-所持品
-*/
+ * Inventory
+ * 所持品
+ */
 USTRUCT(BlueprintType)
 struct FInventory
 {
 	GENERATED_BODY()
 
-	// 所持しているアイテム
+	/**
+	 * Items in possession
+	 * 所持しているアイテム
+	 */
 	FInventoryPair Item[ItemDataIdSize];
 
-	// 所持している武器
+	/**
+	 * Weapons in possession
+	 * 所持している武器
+	 */
 	FInventoryPair Weapon[WeaponDataIdSize];
 
-	// 所持しているダンジョン毎のアイテム
+	/**
+	 * Items per dungeon in your possession
+	 * 所持しているダンジョン毎のアイテム
+	 */
 	FDungeonInventory Dungeons;
 
-	/*
-	所持品を初期状態にリセットする
-	*/
+	/**
+	 * Reset your possessions to their initial state
+	 * 所持品を初期状態にリセットする
+	 */
 	void Reset(const bool reset);
 };

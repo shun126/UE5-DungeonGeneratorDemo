@@ -1,6 +1,6 @@
 /**
-ドロップ武器基底クラス
-*/
+ * ドロップ武器基底クラス
+ */
 
 #pragma once
 #include "Stockable.h"
@@ -8,8 +8,8 @@
 #include "DropWeaponBase.generated.h"
 
 /**
-武器基底クラス
-*/
+ * 武器基底クラス
+ */
 UCLASS(Abstract)
 class ADropWeaponBase : public AStockable
 {
