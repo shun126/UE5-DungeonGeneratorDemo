@@ -1,6 +1,6 @@
 /**
-ドロップ金基底クラス
-*/
+ * ドロップ金基底クラス
+ */
 
 #include "DropGoldBase.h"
 #include "Actor/GamePlayerState.h"
@@ -15,13 +15,8 @@ ADropGoldBase::ADropGoldBase(const FObjectInitializer& ObjectInitializer)
 
 FText ADropGoldBase::GetLabel_Implementation() const
 {
-	if (ItemDataId != EItemDataId::Invalid)
-	{
-		if (const auto gameInstance = UGameInstanceBase::Instance())
-			return gameInstance->GetItemDataAsset().Get(ItemDataId).GetName();
-	}
-
-	return FText();
+	// TODO: ローカライズに対応してください
+	return FText::FromString(TEXT("金"));
 }
 
 void ADropGoldBase::PickUp(const APawn* finderPawn)

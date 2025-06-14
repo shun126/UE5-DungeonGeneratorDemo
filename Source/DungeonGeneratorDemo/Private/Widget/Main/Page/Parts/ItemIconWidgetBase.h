@@ -48,6 +48,13 @@ public:
 	FText GetLabel() const;
 
 	/**
+	 * Get Description
+	 * 説明を取得します
+	 */
+	UFUNCTION(BlueprintPure)
+	FText GetDescription() const;
+
+	/**
 	 * Retrieves the number of items owned
 	 * 所有アイテムの数を取得します
 	 */

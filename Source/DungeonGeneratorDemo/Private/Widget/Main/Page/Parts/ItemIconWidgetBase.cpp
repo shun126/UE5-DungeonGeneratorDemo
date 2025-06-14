@@ -18,11 +18,21 @@ FText UItemIconWidgetBase::GetLabel() const
 	{
 		const auto& asset = instance->GetItemDataAsset();
 		const auto& data = asset.Get(ItemDataId);
-		return FText::FromString(data.Name);
+		return data.GetName();
 	}
+	return FText();
+}
 
-	static FText dummy;
-	return dummy;
+FText UItemIconWidgetBase::GetDescription() const
+{
+	const auto* instance = Cast<UGameInstanceBase>(GetGameInstance());
+	if (IsValid(instance))
+	{
+		const auto& asset = instance->GetItemDataAsset();
+		const auto& data = asset.Get(ItemDataId);
+		return data.GetDescription();
+	}
+	return FText();
 }
 
 TSubclassOf<AActor> UItemIconWidgetBase::GetActorClass() const
@@ -34,9 +44,7 @@ TSubclassOf<AActor> UItemIconWidgetBase::GetActorClass() const
 		const auto& data = asset.Get(ItemDataId);
 		return data.ActorClass;
 	}
-
-	static TSubclassOf<AActor> dummy;
-	return dummy;
+	return TSubclassOf<AActor>();
 }
 
 int32 UItemIconWidgetBase::GetCount() const

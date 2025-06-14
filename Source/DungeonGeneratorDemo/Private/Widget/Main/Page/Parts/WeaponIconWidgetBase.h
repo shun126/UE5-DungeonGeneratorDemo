@@ -42,6 +42,13 @@ public:
 	FText GetLabel() const;
 
 	/**
+	 * Get Description
+	 * 説明を取得します
+	 */
+	UFUNCTION(BlueprintPure)
+	FText GetDescription() const;
+
+	/**
 	所有武器の数を取得します
 	*/
 	UFUNCTION(BlueprintPure)
