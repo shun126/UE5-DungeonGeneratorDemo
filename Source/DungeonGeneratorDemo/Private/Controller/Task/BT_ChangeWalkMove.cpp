@@ -22,6 +22,6 @@ EBTNodeResult::Type UBT_ChangeWalkMove::ExecuteTask(UBehaviorTreeComponent& owne
 
 
     ownerAvatar->ChangeWalk();
-    ownerAvatar->Alert(false);
+    ownerAvatar->Alert(nullptr);
     return EBTNodeResult::Succeeded;
 }

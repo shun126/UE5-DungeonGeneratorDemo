@@ -35,12 +35,12 @@ void ADropGoldBase::PickUp(const APawn* finderPawn)
 		}
 		else
 		{
-			DUNGEON_GENERATOR_DEMO_ERROR(TEXT("金を拾うプレイヤーステートが見つかりません"));
+			DUNGEON_GENERATOR_DEMO_ERROR(TEXT("Can't find a player state to pick up the gold for actor '%s'"), *GetName());
 		}
 	}
 	else
 	{
-		DUNGEON_GENERATOR_DEMO_ERROR(TEXT("金を拾うプレイヤーを指定して下さい"));
+		DUNGEON_GENERATOR_DEMO_ERROR(TEXT("Specify the player who will pick up the money for actor '%s'"), *GetName());
 	}
 }
 

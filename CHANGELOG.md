@@ -1,8 +1,32 @@
 # Change Log - Procedural 3D Dungeon Generator Plug-in
 
-## Unreleased-1.6.* (51)
+## Unreleased-1.6.* (53)
 ### Changes
 ### 変更点
+
+## 20250619-1.6.23 (52)
+### Changes
+* Modified to switch between wall, ceiling, and column component types
+* Revised culling distances
+* Cleaned up assets by adding comments and removing incorrect nodes in BPs
+* Fixed several bugs
+### 変更点
+* 壁、天井、柱のコンポーネントの種類を切り替えられるように変更
+* カリング距離を見直し
+* BP内のコメント追加や不正ノードの除去などアセットを整理
+* いくつかの不具合を修正
+
+## 20250607-1.6.22 (51)
+### Changes
+* Unreal Engine 5.6 support
+* Moved DungeonRoomSensor's Initialize timing to after interior creation
+* Changed the drawing method of RandomTransform in DungeonRoomSensor
+* Fixed some bugs
+### 変更点
+* Unreal Engine 5.6対応
+* DungeonRoomSensorのInitializeタイミングを内装生成後に移動
+* DungeonRoomSensorのRandomTransformの抽選方法を変更
+* いくつかの不具合を修正
 
 ## 20250603-1.6.21 (50)
 ### Changes
