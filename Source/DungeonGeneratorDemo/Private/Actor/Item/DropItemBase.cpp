@@ -49,17 +49,17 @@ void ADropItemBase::PickUp(const APawn* finderPawn)
 			}
 			else
 			{
-				DUNGEON_GENERATOR_DEMO_ERROR(TEXT("アイテムを拾うプレイヤーステートが見つかりません"));
+				DUNGEON_GENERATOR_DEMO_ERROR(TEXT("Cannot find player state to pick up item for actor '%s'"), *GetName());
 			}
 		}
 		else
 		{
-			DUNGEON_GENERATOR_DEMO_ERROR(TEXT("アイテムを拾うプレイヤーを指定して下さい"));
+			DUNGEON_GENERATOR_DEMO_ERROR(TEXT("Specify the player who will pick up the item for actor '%s'"), *GetName());
 		}
 	}
 	else
 	{
-		DUNGEON_GENERATOR_DEMO_ERROR(TEXT("ItemDataIdを設定して下さい"));
+		DUNGEON_GENERATOR_DEMO_ERROR(TEXT("Set ItemDataId for actor '%s'"), *GetName());
 	}
 }
 

@@ -44,7 +44,7 @@ UEnemyMovementComponent::UEnemyMovementComponent(const FObjectInitializer& Objec
 
 
 	// UNavMovementComponent
-#if UE_VERSION_NEWER_THAN(5, 4, 0)
+#if UE_VERSION_NEWER_THAN(5, 5, 0)
 	check(GetNavMovementProperties());
 	GetNavMovementProperties()->bUseAccelerationForPaths = true;
 #else

@@ -98,7 +98,7 @@ FVector AStockable::GetImpulseAtDrop() const
 
 FText AStockable::GetLabel_Implementation() const
 {
-	//DUNGEON_GENERATOR_DEMO_ERROR(TEXT("Cannot obtain StringTable name and key for actor (%s)"), *GetName());
+	//DUNGEON_GENERATOR_DEMO_ERROR(TEXT("Cannot obtain StringTable name and key for actor '%s'"), *GetName());
 	return FText();
 }
 
@@ -120,8 +120,7 @@ void AStockable::BeginPlay()
 	else
 	{
 #if WITH_EDITOR
-		const FString name = GetName();
-		DUNGEON_GENERATOR_DEMO_ERROR(TEXT("アクター(%s)のユーザーウィジットはUBalloonWidgetBaseの派生クラスではありません"), *name);
+		DUNGEON_GENERATOR_DEMO_ERROR(TEXT("Actor '%s' user widget is not a derived class of UBalloonWidgetBase"), *GetName());
 #endif
 	}
 
@@ -131,8 +130,7 @@ void AStockable::BeginPlay()
 #if WITH_EDITOR
 		if (!Mesh->IsSimulatingPhysics())
 		{
-			const FString& name = GetName();
-			DUNGEON_GENERATOR_DEMO_ERROR(TEXT("アクター(%s)は物理シミュレーションが無効でした"), *name);
+			DUNGEON_GENERATOR_DEMO_ERROR(TEXT("Actor '%s' had invalid physics simulation"), *GetName());
 		}
 #endif
 
