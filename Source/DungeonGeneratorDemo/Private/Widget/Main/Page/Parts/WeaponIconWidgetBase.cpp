@@ -29,11 +29,21 @@ FText UWeaponIconWidgetBase::GetLabel() const
 	{
 		const auto& asset = instance->GetWeaponDataAsset();
 		const auto& data = asset.Get(WeaponDataId);
-		return FText::FromString(data.Name);
+		return data.GetName();
 	}
+	return FText();
+}
 
-	static FText dummy;
-	return dummy;
+FText UWeaponIconWidgetBase::GetDescription() const
+{
+	const auto* instance = Cast<UGameInstanceBase>(GetGameInstance());
+	if (IsValid(instance))
+	{
+		const auto& asset = instance->GetWeaponDataAsset();
+		const auto& data = asset.Get(WeaponDataId);
+		return data.GetDescription();
+	}
+	return FText();
 }
 
 TSubclassOf<AActor> UWeaponIconWidgetBase::GetActorClass() const
@@ -44,9 +54,7 @@ TSubclassOf<AActor> UWeaponIconWidgetBase::GetActorClass() const
 		if (IsValid(instance))
 			return instance->GetWeaponDataAsset().Get(WeaponDataId).EquippedActorClass;
 	}
-
-	static TSubclassOf<AActor> dummy;
-	return dummy;
+	return TSubclassOf<AActor>();
 }
 
 int32 UWeaponIconWidgetBase::GetCount() const

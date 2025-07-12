@@ -1,6 +1,6 @@
 /**
-ドロップ食料基底クラス
-*/
+ * ドロップ食料基底クラス
+ */
 
 #pragma once
 #include "Stockable.h"
@@ -8,8 +8,8 @@
 #include "DropFoodBase.generated.h"
 
 /**
-食料基底クラス
-*/
+ * 食料基底クラス
+ */
 UCLASS(Abstract)
 class ADropFoodBase : public AStockable
 {
@@ -17,19 +17,19 @@ class ADropFoodBase : public AStockable
 
 public:
 	/**
-	コンストラクタ
-	*/
+	 * コンストラクタ
+	 */
 	explicit ADropFoodBase(const FObjectInitializer& ObjectInitializer);
 
 	/**
-	デストラクタ
-	*/
+	 * デストラクタ
+	 */
 	virtual ~ADropFoodBase() override = default;
 
 	/**
-	この食料を拾う
-	\param[in]	finderPawn		拾ったポーン
-	*/
+	 * この食料を拾う
+	 * @param[in]	finderPawn		拾ったポーン
+	 */
 	UFUNCTION()
 	void PickUp(const APawn* finderPawn);
 
@@ -49,9 +49,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString StringTableKey;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	EItemDataId ItemDataId = EItemDataId::Invalid;
-
+	/**
+	 * 量
+	 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (ClampMin = 0))
 	int32 Amount = 100;
 };

@@ -1,6 +1,6 @@
 /**
-ドロップ金基底クラス
-*/
+ * ドロップ金基底クラス
+ */
 
 #pragma once
 #include "Stockable.h"
@@ -8,8 +8,8 @@
 #include "DropGoldBase.generated.h"
 
 /**
-金基底クラス
-*/
+ * 金基底クラス
+ */
 UCLASS(Abstract)
 class ADropGoldBase : public AStockable
 {
@@ -49,9 +49,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString StringTableKey;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	EItemDataId ItemDataId = EItemDataId::Invalid;
-
+	/**
+	 * 量
+	 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (ClampMin = 0))
 	int32 Amount = 1;
 };

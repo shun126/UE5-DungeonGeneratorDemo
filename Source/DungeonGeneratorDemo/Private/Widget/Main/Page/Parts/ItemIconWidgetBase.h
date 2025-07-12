@@ -1,8 +1,6 @@
 /**
-@author		Shun Moriya
-
-
-*/
+ * @author		Shun Moriya
+ */
 
 #pragma once
 #include "DataAsset/ItemDataId.h"
@@ -11,7 +9,11 @@
 #include "ItemIconWidgetBase.generated.h"
 
 /**
-ベースクラス
+ * Base class for the item icon widget in the item menu
+ * Use and destroy player's items.
+ * 
+ * アイテムメニュー内のアイテムアイコンウィジットのベースクラス
+ * プレイヤーのアイテムの使用と破棄を行います。
 */
 UCLASS(Abstract)
 class UItemIconWidgetBase : public UUserWidget
@@ -20,71 +22,95 @@ class UItemIconWidgetBase : public UUserWidget
 
 public:
 	/**
-	コンストラクタ
-	*/
+	 * constructor
+	 * コンストラクタ
+	 */
 	explicit UItemIconWidgetBase(const FObjectInitializer& ObjectInitializer);
 
 	/**
-	デストラクタ
-	*/
+	 * destructor
+	 * デストラクタ
+	 */
 	virtual ~UItemIconWidgetBase() override = default;
 
 	/**
-	登録したストリングテーブルのIDとを所有アイテム名のストリングテーブルのキー取得します
-	\return		登録したストリングテーブルのID
-	*/
-	UFUNCTION(BlueprintCallable)
-	void GetStringTableNameAndKey(FName& name, FString& key) const;
-
-	/**
-	生成するアクターのクラス
-	*/
+	 * Class of actor to be generated
+	 * 生成するアクターのクラス
+	 */
 	UFUNCTION(BlueprintCallable)
 	TSubclassOf<AActor> GetActorClass() const;
 
 	/**
-	名称を取得します
-	*/
+	 * Get Name
+	 * 名称を取得します
+	 */
 	UFUNCTION(BlueprintPure)
 	FText GetLabel() const;
 
 	/**
-	所有アイテムの数を取得します
-	*/
+	 * Get Description
+	 * 説明を取得します
+	 */
+	UFUNCTION(BlueprintPure)
+	FText GetDescription() const;
+
+	/**
+	 * Retrieves the number of items owned
+	 * 所有アイテムの数を取得します
+	 */
 	UFUNCTION(BlueprintCallable)
 	int32 GetCount() const;
 
 	/**
-	所有アイテムの熟練度を取得します
-	*/
+	 * Acquire proficiency in owned items
+	 * 所有アイテムの熟練度を取得します
+	 */
 	UFUNCTION(BlueprintCallable)
 	int32 GetSkill() const;
 
 	/**
-	所有アイテムを使用します
-	*/
+	 * Use owned items
+	 * 所有アイテムを使用します
+	 */
 	UFUNCTION(BlueprintCallable)
 	void Use() const;
 
 	/**
-	所有アイテムを使用できるか取得します
-	*/
+	 * You will be notified when an item you own is about to be used
+	 * 所有アイテムを使用する時に通知されます
+	 *
+	 * @param skillRate 熟練度
+	 * @return trueならば個数を減らし、熟練度を1増価させます
+	 */
+	UFUNCTION(BlueprintImplementableEvent)
+	bool OnUse(float skillRate) const;
+
+	/**
+	 * Retrieves whether the owned item can be used
+	 * 所有アイテムを使用できるか取得します
+	 */
 	UFUNCTION(BlueprintCallable)
 	bool CanUse() const;
 
 	/**
-	所有アイテムを捨てる
-	*/
+	 * Discard owned items
+	 * 所有アイテムを捨てる
+	 */
 	UFUNCTION(BlueprintCallable)
 	void Drop() const;
 
 	/**
-	所有アイテムを捨てられるか取得します
-	*/
+	 * Find out if you can throw away items you own.
+	 * 所有アイテムを捨てられるか調べます
+	 */
 	UFUNCTION(BlueprintCallable)
 	bool CanDrop() const;
 
 protected:
+	/**
+	 * Item Identification Number
+	 * アイテム識別番号
+	 */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	EItemDataId ItemDataId = EItemDataId::Invalid;
 };

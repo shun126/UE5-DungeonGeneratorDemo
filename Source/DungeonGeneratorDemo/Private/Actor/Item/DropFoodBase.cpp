@@ -1,6 +1,6 @@
 /**
-ドロップ食料基底クラス
-*/
+ * ドロップ食料基底クラス
+ */
 
 #include "DropFoodBase.h"
 #include "Actor/GamePlayerState.h"
@@ -15,13 +15,8 @@ ADropFoodBase::ADropFoodBase(const FObjectInitializer& ObjectInitializer)
 
 FText ADropFoodBase::GetLabel_Implementation() const
 {
-	if (ItemDataId != EItemDataId::Invalid)
-	{
-		if (const auto gameInstance = UGameInstanceBase::Instance())
-			return gameInstance->GetItemDataAsset().Get(ItemDataId).GetName();
-	}
-
-	return FText();
+	// TODO: ローカライズに対応してください
+	return FText::FromString(TEXT("食料"));
 }
 
 void ADropFoodBase::PickUp(const APawn* finderPawn)
