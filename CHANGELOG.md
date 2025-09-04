@@ -1,5 +1,63 @@
 # Change Log - Procedural 3D Dungeon Generator Plug-in
 
+## 20250903-1.7.6 (59)
+### Changes
+* Removed access to editor functions while in standalone mode.
+* Fixed several bugs
+### 変更点
+* スタンドアローンモード中にエディタ機能へアクセスしていたので削除
+* いくつかの不具合を修正
+
+## 20250831-1.7.5 (58)
+### Changes
+* Enable/disable control of shadow generation in point light derived classes changed from per-partition to per-light.
+* Fixed a misjudgment of the viewing cone in the determination of active partition.
+* Limit the transfer method of the minimap to only the area of the change.
+* Added actors that regularly spawn actors.
+* Fixed several bugs
+### 変更点
+* ポイントライト派生クラスの影の生成の有効無効制御をパーティエーション単位からライト単位に変更
+* アクティブパーティエーションの判定で視錐台の判定ミスを修正
+* ミニマップの転送方法を変更範囲のみに限定
+* アクターを定期的にスポーンするアクターを追加
+* いくつかの不具合を修正
+
+## 202500809-1.7.4 (57)
+### Changes
+* Fixed several bugs
+### 変更点
+* いくつかの不具合を修正
+
+## 202500807-1.7.3 (56)
+### Changes
+* Added widget class to assist in creating mini-maps
+* Adjusted the effective range of point light and spot light shadows
+* Fixed several bugs
+### 変更点
+* ミニマップの作成を補助するウィジットクラスを追加
+* ポイントライト、スポットライトの影の有効範囲を調整
+* いくつかの不具合を修正
+
+## 20250722-1.7.2 (55)
+### Changes
+* Fixed an issue where point light and spot light shadows were not enabled
+* Fixed plug-in asset reference errors
+* Fixed several bugs
+### 変更点
+* ポイントライト、スポットライトの影が有効にならない問題を修正
+* プラグインアセットの参照エラーを修正
+* いくつかの不具合を修正
+
+## 20250718-1.7.1 (54)
+### Changes
+* Modified sensor properties of DungeonRoomSensor to be editable.
+* Fixed plug-in asset reference errors
+* Fixed several bugs
+### 変更点
+* DungeonRoomSensorのセンサーのプロパティを変更可能に修正
+* プラグインアセットの参照エラーを修正
+* いくつかの不具合を修正
+
 ## 20250622-1.7.0 (53)
 ### Changes
 * Fixed a hang issue with editor generation
@@ -10,30 +68,6 @@
 * エディタ生成でハングアップする問題を修正
 * サブレベル対象レベルを開いた状態でサブレベルデータベースを更新すると保存ができなくなる問題を修正
 * ミニマップをテクスチャアセットに連続で保存できない問題を修正
-* いくつかの不具合を修正
-
-## 20250619-1.6.23 (52)
-### Changes
-* Modified to switch between wall, ceiling, and column component types
-* Revised culling distances
-* Cleaned up assets by adding comments and removing incorrect nodes in BPs
-* Fixed several bugs
-### 変更点
-* 壁、天井、柱のコンポーネントの種類を切り替えられるように変更
-* カリング距離を見直し
-* BP内のコメント追加や不正ノードの除去などアセットを整理
-* いくつかの不具合を修正
-
-## 20250607-1.6.22 (51)
-### Changes
-* Unreal Engine 5.6 support
-* Moved DungeonRoomSensor's Initialize timing to after interior creation
-* Changed the drawing method of RandomTransform in DungeonRoomSensor
-* Fixed some bugs
-### 変更点
-* Unreal Engine 5.6対応
-* DungeonRoomSensorのInitializeタイミングを内装生成後に移動
-* DungeonRoomSensorのRandomTransformの抽選方法を変更
 * いくつかの不具合を修正
 
 ## 20250619-1.6.23 (52)
