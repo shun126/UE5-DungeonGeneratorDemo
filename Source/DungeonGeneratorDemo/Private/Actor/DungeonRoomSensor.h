@@ -3,7 +3,7 @@
 #include <SubActor/DungeonRoomSensorBase.h>
 #include "DungeonRoomSensor.generated.h"
 
-UCLASS()
+UCLASS(ClassGroup = "DungeonGenerator")
 class ADungeonRoomSensor : public ADungeonRoomSensorBase
 {
 	GENERATED_BODY()

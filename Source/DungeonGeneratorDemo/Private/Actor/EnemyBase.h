@@ -200,7 +200,7 @@ private:
 	void UpdateAim(const float deltaSeconds);
 
 public:
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
 	void Dead();
 
 protected:

@@ -23,7 +23,7 @@ AEnemyBase::AEnemyBase(const FObjectInitializer& objectInitializer)
 	bUseControllerRotationYaw = false;
 }
 
-void AEnemyBase::Dead()
+void AEnemyBase::Dead_Implementation()
 {
 	if (auto controller = GetController<AEnemyControllerBase>())
 		controller->Dead();
